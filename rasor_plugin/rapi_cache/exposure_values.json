@@ -1,0 +1,3152 @@
+{
+	"meta": {
+		"total_count": 629,
+		"limit": 0,
+		"offset": 0
+	},
+	"objects": [{
+		"attribute": 2,
+		"id": 41,
+		"name": "medical_clinic"
+	},
+	{
+		"attribute": 2,
+		"id": 42,
+		"name": "kindergarten"
+	},
+	{
+		"attribute": 2,
+		"id": 44,
+		"name": "library"
+	},
+	{
+		"attribute": 2,
+		"id": 45,
+		"name": "college/university"
+	},
+	{
+		"attribute": 2,
+		"id": 21,
+		"name": "retail_trade"
+	},
+	{
+		"attribute": 2,
+		"id": 23,
+		"name": "personal_and_repair_services "
+	},
+	{
+		"attribute": 2,
+		"id": 24,
+		"name": "business_professional_technical_services"
+	},
+	{
+		"attribute": 2,
+		"id": 25,
+		"name": "depository_institutions"
+	},
+	{
+		"attribute": 2,
+		"id": 26,
+		"name": "entertainment_and_recreation"
+	},
+	{
+		"attribute": 2,
+		"id": 28,
+		"name": "parking"
+	},
+	{
+		"attribute": 2,
+		"id": 22,
+		"name": "wholesale_trade "
+	},
+	{
+		"attribute": 2,
+		"id": 20,
+		"name": "nursing_home"
+	},
+	{
+		"attribute": 2,
+		"id": 19,
+		"name": "institutional_dormitory"
+	},
+	{
+		"attribute": 2,
+		"id": 18,
+		"name": "temporary_lodging "
+	},
+	{
+		"attribute": 2,
+		"id": 11,
+		"name": "mobile_home"
+	},
+	{
+		"attribute": 2,
+		"id": 12,
+		"name": "multi_family_dwelling_duplex"
+	},
+	{
+		"attribute": 2,
+		"id": 13,
+		"name": "multi_family_dwelling_3-4 units"
+	},
+	{
+		"attribute": 2,
+		"id": 14,
+		"name": "multi_family_dwelling_5-9 units"
+	},
+	{
+		"attribute": 2,
+		"id": 15,
+		"name": "multi_family_dwelling_10-19 units"
+	},
+	{
+		"attribute": 2,
+		"id": 16,
+		"name": "multi_family_dwelling_20-49 units"
+	},
+	{
+		"attribute": 2,
+		"id": 17,
+		"name": "multi_family_dwelling_50+units"
+	},
+	{
+		"attribute": 2,
+		"id": 29,
+		"name": "heavy_industry"
+	},
+	{
+		"attribute": 2,
+		"id": 30,
+		"name": "light_industry"
+	},
+	{
+		"attribute": 2,
+		"id": 31,
+		"name": "food_drugs_chemicals_industry"
+	},
+	{
+		"attribute": 2,
+		"id": 32,
+		"name": "metals_minerals_processing_industry"
+	},
+	{
+		"attribute": 2,
+		"id": 33,
+		"name": "high_technology_industry"
+	},
+	{
+		"attribute": 2,
+		"id": 34,
+		"name": "construction"
+	},
+	{
+		"attribute": 11,
+		"id": 69,
+		"name": "steel_moment_frame"
+	},
+	{
+		"attribute": 11,
+		"id": 70,
+		"name": "steel_braced_frame"
+	},
+	{
+		"attribute": 11,
+		"id": 71,
+		"name": "steel_light_frame"
+	},
+	{
+		"attribute": 11,
+		"id": 72,
+		"name": "steel_frame_with_concrete_shear_walls"
+	},
+	{
+		"attribute": 11,
+		"id": 73,
+		"name": "steel_frame_with_unreinforced_masonry_infill_walls"
+	},
+	{
+		"attribute": 11,
+		"id": 74,
+		"name": "concrete_moment_frame"
+	},
+	{
+		"attribute": 11,
+		"id": 75,
+		"name": "concrete_shear_walls"
+	},
+	{
+		"attribute": 11,
+		"id": 76,
+		"name": "concrete_frame_with_unreinforced_masonry_infill_walls"
+	},
+	{
+		"attribute": 11,
+		"id": 77,
+		"name": "precast_concrete_tilt-up_walls"
+	},
+	{
+		"attribute": 11,
+		"id": 78,
+		"name": "precast_concrete_frames_with_concrete_shear_walls"
+	},
+	{
+		"attribute": 11,
+		"id": 79,
+		"name": "reinforced_masonry_bearing_walls_with_wood_or_metal_deck_diaphragms"
+	},
+	{
+		"attribute": 11,
+		"id": 80,
+		"name": "reinforced_masonry_bearing_walls_with_precast_concrete_diaphragms"
+	},
+	{
+		"attribute": 4,
+		"id": 50,
+		"name": "0"
+	},
+	{
+		"attribute": 7,
+		"id": 52,
+		"name": "0"
+	},
+	{
+		"attribute": 4,
+		"id": 51,
+		"name": "1"
+	},
+	{
+		"attribute": 7,
+		"id": 53,
+		"name": "1"
+	},
+	{
+		"attribute": 8,
+		"id": 54,
+		"name": "piers"
+	},
+	{
+		"attribute": 9,
+		"id": 56,
+		"name": "ceramic_tiles"
+	},
+	{
+		"attribute": 8,
+		"id": 55,
+		"name": "slab"
+	},
+	{
+		"attribute": 9,
+		"id": 57,
+		"name": "sheet_steel"
+	},
+	{
+		"attribute": 9,
+		"id": 58,
+		"name": "timber_boards"
+	},
+	{
+		"attribute": 9,
+		"id": 59,
+		"name": "reinforced_concrete"
+	},
+	{
+		"attribute": 9,
+		"id": 60,
+		"name": "tatch"
+	},
+	{
+		"attribute": 9,
+		"id": 61,
+		"name": "membrane_roofing"
+	},
+	{
+		"attribute": 10,
+		"id": 63,
+		"name": "sloping"
+	},
+	{
+		"attribute": 10,
+		"id": 62,
+		"name": "flat"
+	},
+	{
+		"attribute": 25,
+		"id": 64,
+		"name": "poor"
+	},
+	{
+		"attribute": 25,
+		"id": 65,
+		"name": "average"
+	},
+	{
+		"attribute": 11,
+		"id": 81,
+		"name": "unreinforced_masonry_bearing_walls"
+	},
+	{
+		"attribute": 28,
+		"id": 84,
+		"name": "poor"
+	},
+	{
+		"attribute": 28,
+		"id": 85,
+		"name": "medium"
+	},
+	{
+		"attribute": 28,
+		"id": 86,
+		"name": "good"
+	},
+	{
+		"attribute": 28,
+		"id": 87,
+		"name": "very good"
+	},
+	{
+		"attribute": 28,
+		"id": 83,
+		"name": "very_poor"
+	},
+	{
+		"attribute": 25,
+		"id": 66,
+		"name": "good"
+	},
+	{
+		"attribute": 11,
+		"id": 82,
+		"name": "mobile_home"
+	},
+	{
+		"attribute": 16,
+		"id": 99,
+		"name": "road_bored/drilled_tunnel"
+	},
+	{
+		"attribute": 16,
+		"id": 100,
+		"name": "road_cut_and_cover_tunnel"
+	},
+	{
+		"attribute": 2,
+		"id": 159,
+		"name": "rail_maintenance_facility_building"
+	},
+	{
+		"attribute": 17,
+		"id": 123,
+		"name": "motorway"
+	},
+	{
+		"attribute": 29,
+		"id": 88,
+		"name": "1"
+	},
+	{
+		"attribute": 29,
+		"id": 89,
+		"name": "2"
+	},
+	{
+		"attribute": 29,
+		"id": 90,
+		"name": "3"
+	},
+	{
+		"attribute": 29,
+		"id": 91,
+		"name": "4"
+	},
+	{
+		"attribute": 29,
+		"id": 92,
+		"name": "5"
+	},
+	{
+		"attribute": 29,
+		"id": 93,
+		"name": "6"
+	},
+	{
+		"attribute": 16,
+		"id": 98,
+		"name": "road_track"
+	},
+	{
+		"attribute": 2,
+		"id": 43,
+		"name": "school"
+	},
+	{
+		"attribute": 2,
+		"id": 10,
+		"name": "single_family_home"
+	},
+	{
+		"attribute": 2,
+		"id": 27,
+		"name": "theater"
+	},
+	{
+		"attribute": 11,
+		"id": 67,
+		"name": "wood_light_frame(<=500m^2)"
+	},
+	{
+		"attribute": 11,
+		"id": 68,
+		"name": "wood_light_frame(>=500m^2)"
+	},
+	{
+		"attribute": 2,
+		"id": 35,
+		"name": "fire_station"
+	},
+	{
+		"attribute": 2,
+		"id": 36,
+		"name": "police_station"
+	},
+	{
+		"attribute": 2,
+		"id": 40,
+		"name": "generic_hospital"
+	},
+	{
+		"attribute": 2,
+		"id": 39,
+		"name": "medium_hospital"
+	},
+	{
+		"attribute": 2,
+		"id": 38,
+		"name": "small_hospital"
+	},
+	{
+		"attribute": 2,
+		"id": 4,
+		"name": "agriculture_and_zootechnics_establishments"
+	},
+	{
+		"attribute": 16,
+		"id": 103,
+		"name": "major_bridge_length>150m_seismic_design"
+	},
+	{
+		"attribute": 16,
+		"id": 104,
+		"name": "road_bridge_single_span_conventional_design"
+	},
+	{
+		"attribute": 16,
+		"id": 152,
+		"name": "generic_other_concrete_(non_continuous)"
+	},
+	{
+		"attribute": 19,
+		"id": 128,
+		"name": "concrete_railway_bridge"
+	},
+	{
+		"attribute": 17,
+		"id": 125,
+		"name": "county_roads"
+	},
+	{
+		"attribute": 17,
+		"id": 126,
+		"name": "local_road"
+	},
+	{
+		"attribute": 17,
+		"id": 124,
+		"name": "national_road"
+	},
+	{
+		"attribute": 19,
+		"id": 127,
+		"name": "railway_track"
+	},
+	{
+		"attribute": 19,
+		"id": 134,
+		"name": "rail_bored/drilled_tunnnel"
+	},
+	{
+		"attribute": 19,
+		"id": 135,
+		"name": "rail_cut_and_cover_tunnel"
+	},
+	{
+		"attribute": 2,
+		"id": 137,
+		"name": "generic_industrial"
+	},
+	{
+		"attribute": 2,
+		"id": 138,
+		"name": "generic_education"
+	},
+	{
+		"attribute": 2,
+		"id": 139,
+		"name": "generic_commercial"
+	},
+	{
+		"attribute": 2,
+		"id": 140,
+		"name": "generic_residential"
+	},
+	{
+		"attribute": 2,
+		"id": 141,
+		"name": "generic_medical_care_facilities"
+	},
+	{
+		"attribute": 11,
+		"id": 142,
+		"name": "generic_precast_concrete"
+	},
+	{
+		"attribute": 11,
+		"id": 143,
+		"name": "generic_wood"
+	},
+	{
+		"attribute": 11,
+		"id": 145,
+		"name": "generic_steel"
+	},
+	{
+		"attribute": 11,
+		"id": 146,
+		"name": "generic_concrete"
+	},
+	{
+		"attribute": 16,
+		"id": 147,
+		"name": "generic_road_tunnel"
+	},
+	{
+		"attribute": 16,
+		"id": 148,
+		"name": "generic_road_bridge"
+	},
+	{
+		"attribute": 16,
+		"id": 149,
+		"name": "generic_major_bridge"
+	},
+	{
+		"attribute": 16,
+		"id": 150,
+		"name": "generic_continuous_steel"
+	},
+	{
+		"attribute": 16,
+		"id": 153,
+		"name": "generic_other_steel_(non_continuous)"
+	},
+	{
+		"attribute": 16,
+		"id": 151,
+		"name": "generic_continuous_concrete"
+	},
+	{
+		"attribute": 16,
+		"id": 105,
+		"name": "road_bridge_single_span_seismic_design"
+	},
+	{
+		"attribute": 16,
+		"id": 154,
+		"name": "generic_other_bridge_(non_steel_non_concrete)  "
+	},
+	{
+		"attribute": 19,
+		"id": 155,
+		"name": "generic_railway_bridge"
+	},
+	{
+		"attribute": 19,
+		"id": 156,
+		"name": "generic_steel_railway_bridge"
+	},
+	{
+		"attribute": 19,
+		"id": 157,
+		"name": "generic_railway_tunnel"
+	},
+	{
+		"attribute": 19,
+		"id": 133,
+		"name": "wood_railway_bridge"
+	},
+	{
+		"attribute": 2,
+		"id": 161,
+		"name": "bus_station"
+	},
+	{
+		"attribute": 2,
+		"id": 162,
+		"name": "bus_maintenance_facility_building"
+	},
+	{
+		"attribute": 2,
+		"id": 163,
+		"name": "port_warehouse"
+	},
+	{
+		"attribute": 2,
+		"id": 164,
+		"name": "ferry_passenger_terminal"
+	},
+	{
+		"attribute": 2,
+		"id": 165,
+		"name": "ferry_maintenance_faciliy_building"
+	},
+	{
+		"attribute": 2,
+		"id": 166,
+		"name": "airport_control_tower"
+	},
+	{
+		"attribute": 2,
+		"id": 167,
+		"name": "airport_terminal_building"
+	},
+	{
+		"attribute": 2,
+		"id": 168,
+		"name": "airport_maintenance_and_hangar_facility_building"
+	},
+	{
+		"attribute": 2,
+		"id": 160,
+		"name": "lightrail_maintenance_facility_building"
+	},
+	{
+		"attribute": 2,
+		"id": 169,
+		"name": "airport_parking_structure"
+	},
+	{
+		"attribute": 2,
+		"id": 170,
+		"name": "generic_transport_facilities_building"
+	},
+	{
+		"attribute": 15,
+		"id": 171,
+		"name": "generic_dam"
+	},
+	{
+		"attribute": 15,
+		"id": 172,
+		"name": "earth_dam"
+	},
+	{
+		"attribute": 15,
+		"id": 173,
+		"name": "rock_fill_dam"
+	},
+	{
+		"attribute": 15,
+		"id": 174,
+		"name": "gravity_dam"
+	},
+	{
+		"attribute": 15,
+		"id": 175,
+		"name": "buttress_dam"
+	},
+	{
+		"attribute": 15,
+		"id": 176,
+		"name": "arch_dam"
+	},
+	{
+		"attribute": 15,
+		"id": 177,
+		"name": "multi-arch_dam"
+	},
+	{
+		"attribute": 15,
+		"id": 178,
+		"name": "concrete_dam"
+	},
+	{
+		"attribute": 15,
+		"id": 179,
+		"name": "masonry_dam"
+	},
+	{
+		"attribute": 15,
+		"id": 180,
+		"name": "stone_dam"
+	},
+	{
+		"attribute": 15,
+		"id": 181,
+		"name": "timber_crib_dam"
+	},
+	{
+		"attribute": 15,
+		"id": 182,
+		"name": "miscellaneous_dam"
+	},
+	{
+		"attribute": 15,
+		"id": 183,
+		"name": "nuclear_power_facilities"
+	},
+	{
+		"attribute": 16,
+		"id": 107,
+		"name": "road_bridge_concrete_multicolumn_bent_simple_support_conventional_design"
+	},
+	{
+		"attribute": 16,
+		"id": 108,
+		"name": "road_bridge_concrete_multicolumn_bent_simple_support_seismic_design"
+	},
+	{
+		"attribute": 16,
+		"id": 109,
+		"name": "road_bridge_continuous_concrete_single_column_box_girder_conventional_design"
+	},
+	{
+		"attribute": 16,
+		"id": 110,
+		"name": "road_bridge_continuous_concrete_single_column_box_girder_seismic_design"
+	},
+	{
+		"attribute": 16,
+		"id": 111,
+		"name": "road_bridge_continuous_concrete_not_single_column_box_girder_conventional_design"
+	},
+	{
+		"attribute": 16,
+		"id": 112,
+		"name": "road_bridge_continuous_concrete_not_single_column_box_girder_seismic_design"
+	},
+	{
+		"attribute": 16,
+		"id": 114,
+		"name": "road_bridge_steel_multicolumn_bent_simple_support_seismic_design"
+	},
+	{
+		"attribute": 16,
+		"id": 116,
+		"name": "road_bridge_continuous_steel_seismic_design"
+	},
+	{
+		"attribute": 16,
+		"id": 117,
+		"name": "road_bridge_ps_concrete_multicolumn_bent_simple_support _conventional_design"
+	},
+	{
+		"attribute": 16,
+		"id": 118,
+		"name": "road_bridge_ps_concrete_multicolumn_bent_simple_support _seismic_design"
+	},
+	{
+		"attribute": 16,
+		"id": 119,
+		"name": "road_bridge_ps_concrete_single_column_box_girder_conventional_design"
+	},
+	{
+		"attribute": 16,
+		"id": 120,
+		"name": "road_bridge_ps_concrete_single_column_box_girder_seismic_design"
+	},
+	{
+		"attribute": 19,
+		"id": 129,
+		"name": "railway_bridge_steel_multicolumn_bent_simple_support_conventional_design"
+	},
+	{
+		"attribute": 16,
+		"id": 102,
+		"name": "railway_bridge_major_bridge_length>150m_conventional_design"
+	},
+	{
+		"attribute": 19,
+		"id": 131,
+		"name": "railway_bridge_continuous_steel_conventional_design"
+	},
+	{
+		"attribute": 19,
+		"id": 130,
+		"name": "railway_bridge_column_bent_simple_support_seismic_design"
+	},
+	{
+		"attribute": 19,
+		"id": 132,
+		"name": "railway_bridge_continuous_steel_seismic_design"
+	},
+	{
+		"attribute": 11,
+		"id": 144,
+		"name": "generic_reinforced_masonry"
+	},
+	{
+		"attribute": 2,
+		"id": 158,
+		"name": "rail_station"
+	},
+	{
+		"attribute": 2,
+		"id": 136,
+		"name": "generic_emergency_services"
+	},
+	{
+		"attribute": 15,
+		"id": 184,
+		"name": "military_installations"
+	},
+	{
+		"attribute": 30,
+		"id": 189,
+		"name": "habitat/species_management_area"
+	},
+	{
+		"attribute": 30,
+		"id": 190,
+		"name": "protected_landscape/seascape"
+	},
+	{
+		"attribute": 30,
+		"id": 185,
+		"name": "strict_nature_reserve"
+	},
+	{
+		"attribute": 30,
+		"id": 186,
+		"name": "wilderness_area"
+	},
+	{
+		"attribute": 30,
+		"id": 187,
+		"name": "national_park"
+	},
+	{
+		"attribute": 30,
+		"id": 188,
+		"name": "natural_monument_or_feature"
+	},
+	{
+		"attribute": 23,
+		"id": 193,
+		"name": "national"
+	},
+	{
+		"attribute": 23,
+		"id": 194,
+		"name": "local"
+	},
+	{
+		"attribute": 30,
+		"id": 191,
+		"name": "protected_area_with_sustainable_use_of_natural_resources"
+	},
+	{
+		"attribute": 23,
+		"id": 192,
+		"name": "international"
+	},
+	{
+		"attribute": 14,
+		"id": 212,
+		"name": "generic_railway_fuel_facility"
+	},
+	{
+		"attribute": 14,
+		"id": 213,
+		"name": "railway_fuel_facility_with_anchored_components w/_backup_power"
+	},
+	{
+		"attribute": 22,
+		"id": 201,
+		"name": "potable_water_ductile_pipes"
+	},
+	{
+		"attribute": 22,
+		"id": 195,
+		"name": "generic_potable_water_pipes"
+	},
+	{
+		"attribute": 22,
+		"id": 200,
+		"name": "potable_water_brittle_pipes"
+	},
+	{
+		"attribute": 22,
+		"id": 196,
+		"name": "generic_waste_water_pipes"
+	},
+	{
+		"attribute": 22,
+		"id": 203,
+		"name": "waste_water_ductile_pipes"
+	},
+	{
+		"attribute": 11,
+		"id": 539,
+		"name": ""
+	},
+	{
+		"attribute": 22,
+		"id": 202,
+		"name": "waste_water_brittle_pipes"
+	},
+	{
+		"attribute": 22,
+		"id": 197,
+		"name": "generic_oil_pipes"
+	},
+	{
+		"attribute": 22,
+		"id": 204,
+		"name": "welded_steel_pipe_with_gas_welded_joints"
+	},
+	{
+		"attribute": 22,
+		"id": 205,
+		"name": "welded_steel_pipe_with_arc_welded_joints"
+	},
+	{
+		"attribute": 22,
+		"id": 198,
+		"name": "generic_natural_gas_pipes"
+	},
+	{
+		"attribute": 22,
+		"id": 206,
+		"name": "welded_steel_pipe_with_gas_welded_joints"
+	},
+	{
+		"attribute": 22,
+		"id": 207,
+		"name": "welded_steel_pipe_with_arc_welded_joints"
+	},
+	{
+		"attribute": 19,
+		"id": 209,
+		"name": "major_railway_bridge_lenght<20m_conventional_design"
+	},
+	{
+		"attribute": 19,
+		"id": 208,
+		"name": "generic_major_railway_bridge"
+	},
+	{
+		"attribute": 19,
+		"id": 210,
+		"name": "major_railway_bridge_lenght<20m_seismic_design"
+	},
+	{
+		"attribute": 20,
+		"id": 223,
+		"name": "lightrail_track"
+	},
+	{
+		"attribute": 20,
+		"id": 224,
+		"name": "generic_lightrail_tunnel"
+	},
+	{
+		"attribute": 20,
+		"id": 225,
+		"name": "lightrail_cut_and_cover_tunnel"
+	},
+	{
+		"attribute": 20,
+		"id": 226,
+		"name": "lightrail_bored/drilled_tunnel"
+	},
+	{
+		"attribute": 20,
+		"id": 227,
+		"name": "generic_lightrail_bridge"
+	},
+	{
+		"attribute": 20,
+		"id": 228,
+		"name": "generic_steel_lightrail_bridge"
+	},
+	{
+		"attribute": 20,
+		"id": 233,
+		"name": "concrete_lightrail_bridge"
+	},
+	{
+		"attribute": 20,
+		"id": 234,
+		"name": "wood_lightrail_bridge"
+	},
+	{
+		"attribute": 20,
+		"id": 236,
+		"name": "major_lightrail_bridge_lenght<20m_conventional_design"
+	},
+	{
+		"attribute": 20,
+		"id": 237,
+		"name": "major_lightrail_bridge_lenght<20m_seismic_design"
+	},
+	{
+		"attribute": 20,
+		"id": 235,
+		"name": "generic_major_lightrail_bridge"
+	},
+	{
+		"attribute": 14,
+		"id": 215,
+		"name": "railway_fuel_facility_with_unanchored_components_w/_backup_power"
+	},
+	{
+		"attribute": 14,
+		"id": 216,
+		"name": "railway_fuel_facility_with_unanchored_components_w/o_backup_power"
+	},
+	{
+		"attribute": 14,
+		"id": 222,
+		"name": "generic_railway_dispatch_facility "
+	},
+	{
+		"attribute": 14,
+		"id": 244,
+		"name": "lightrail_dispatch_facility_with_unanchored_components_w/_backup_power"
+	},
+	{
+		"attribute": 14,
+		"id": 245,
+		"name": "lightrail_dispatch_facility_with_unanchored_components_w/o_backup_power"
+	},
+	{
+		"attribute": 14,
+		"id": 247,
+		"name": "generic_bus_fuel_facility"
+	},
+	{
+		"attribute": 14,
+		"id": 220,
+		"name": "railway_dispatchl_facility_with_unanchored_components_w/_backup_power"
+	},
+	{
+		"attribute": 19,
+		"id": 211,
+		"name": "railway_bridge_single_span_lenght<20m_seismic_design"
+	},
+	{
+		"attribute": 14,
+		"id": 219,
+		"name": "railway_dispatch_facility_with_anchored_components_w/o_backup_power"
+	},
+	{
+		"attribute": 14,
+		"id": 217,
+		"name": "railway_fuel_facility_with_buried_tanks"
+	},
+	{
+		"attribute": 14,
+		"id": 221,
+		"name": "railway_dispatchl_facility_with_unanchored_components_w/o_backup_power"
+	},
+	{
+		"attribute": 14,
+		"id": 240,
+		"name": "generic_lightrail_DC_substation"
+	},
+	{
+		"attribute": 14,
+		"id": 242,
+		"name": "lightrail_dispatch_facility_with_anchored_components_w/_backup_power"
+	},
+	{
+		"attribute": 14,
+		"id": 246,
+		"name": "generic_lightrail_dispatch_facility"
+	},
+	{
+		"attribute": 14,
+		"id": 256,
+		"name": "bus_dispatch_facility_with_anchored_components_w/o_backup_power"
+	},
+	{
+		"attribute": 14,
+		"id": 255,
+		"name": "bus_dispatch_facility_with_anchored_components_w/_backup_power"
+	},
+	{
+		"attribute": 14,
+		"id": 254,
+		"name": "generic_bus_dispatch_facility"
+	},
+	{
+		"attribute": 14,
+		"id": 249,
+		"name": "bus_fuel_facility_with_anchored_components_w/o_backup_power"
+	},
+	{
+		"attribute": 14,
+		"id": 250,
+		"name": "bus_fuel_facility_with_unanchored_components_w/_backup_power"
+	},
+	{
+		"attribute": 14,
+		"id": 251,
+		"name": "bus_fuel_facility_with_unanchored_components_w/o_backup_power"
+	},
+	{
+		"attribute": 14,
+		"id": 252,
+		"name": "bus_fuel_facility_with_buried_tanks"
+	},
+	{
+		"attribute": 14,
+		"id": 248,
+		"name": "bus_fuel_facility_with_anchored_components_w/_backup_power"
+	},
+	{
+		"attribute": 14,
+		"id": 253,
+		"name": "generic_bus_facility"
+	},
+	{
+		"attribute": 14,
+		"id": 243,
+		"name": "lightrail_dispatch_facility_with_anchored_components_w/o_backup_power"
+	},
+	{
+		"attribute": 20,
+		"id": 229,
+		"name": "lightrail_bridge_steel_multicolumn_bent_simple_support_conventional_design"
+	},
+	{
+		"attribute": 20,
+		"id": 230,
+		"name": "lightrail_bridge_steel_multicolumn_bent_simple_support_seismic_design"
+	},
+	{
+		"attribute": 20,
+		"id": 231,
+		"name": "lightrail_bridge_continuous_steel_conventional_design"
+	},
+	{
+		"attribute": 20,
+		"id": 232,
+		"name": "lightrail_bridge_continuous_steel_seismic_design"
+	},
+	{
+		"attribute": 14,
+		"id": 214,
+		"name": "railway_fuel_facility_with_anchored_components w/o_backup_power"
+	},
+	{
+		"attribute": 14,
+		"id": 218,
+		"name": "railway_dispatch_facility_with_anchored_components_w/_backup_power"
+	},
+	{
+		"attribute": 14,
+		"id": 257,
+		"name": "bus_dispatch_facility_with_unanchored_components_w/_backup_power"
+	},
+	{
+		"attribute": 14,
+		"id": 258,
+		"name": "bus_dispatch_facility_with_unanchored_components_w/o_backup_power"
+	},
+	{
+		"attribute": 14,
+		"id": 241,
+		"name": "lightrail_DC_substation_with_unanchored_sub-components"
+	},
+	{
+		"attribute": 14,
+		"id": 239,
+		"name": "lightrail_DC_substation_with_anchored_sub-components"
+	},
+	{
+		"attribute": 14,
+		"id": 259,
+		"name": "generic_railway_facility"
+	},
+	{
+		"attribute": 14,
+		"id": 260,
+		"name": "generic_lightrail_facility"
+	},
+	{
+		"attribute": 14,
+		"id": 261,
+		"name": "generic_harbor_infrastructure"
+	},
+	{
+		"attribute": 14,
+		"id": 266,
+		"name": "generic_harbor_fuel_facility"
+	},
+	{
+		"attribute": 14,
+		"id": 267,
+		"name": "harbor_fuel_facility_with_anchored_components_w/_backup_power"
+	},
+	{
+		"attribute": 14,
+		"id": 268,
+		"name": "harbor_fuel_facility_with_anchored_components_w/o_backup_power"
+	},
+	{
+		"attribute": 14,
+		"id": 269,
+		"name": "harbor_fuel_facility_with_unanchored_components_w/_backup_power"
+	},
+	{
+		"attribute": 14,
+		"id": 270,
+		"name": "harbor_fuel_facility_with_unanchored_components_w/o_backup_power"
+	},
+	{
+		"attribute": 14,
+		"id": 271,
+		"name": "harbor_fuel_facility_with_buried_tanks"
+	},
+	{
+		"attribute": 14,
+		"id": 262,
+		"name": "harbor_waterfront_structure"
+	},
+	{
+		"attribute": 14,
+		"id": 272,
+		"name": "generic_ferry_facility"
+	},
+	{
+		"attribute": 14,
+		"id": 273,
+		"name": "ferry_waterfront_structure"
+	},
+	{
+		"attribute": 78,
+		"id": 541,
+		"name": "transmission"
+	},
+	{
+		"attribute": 14,
+		"id": 274,
+		"name": "generic_ferry_fuel_facility"
+	},
+	{
+		"attribute": 14,
+		"id": 275,
+		"name": "ferry_fuel_facility_with_anchored_components_w/_backup_power"
+	},
+	{
+		"attribute": 14,
+		"id": 276,
+		"name": "ferry_fuel_facility_with_anchored_components_w/o_backup_power"
+	},
+	{
+		"attribute": 14,
+		"id": 277,
+		"name": "ferry_uel_facility_with_unanchored_components_w/_backup_power"
+	},
+	{
+		"attribute": 14,
+		"id": 278,
+		"name": "ferry_fuel_facility_with_unanchored_components_w/o_backup_power"
+	},
+	{
+		"attribute": 14,
+		"id": 279,
+		"name": "ferry_fuel_facility_with_buried_tanks"
+	},
+	{
+		"attribute": 14,
+		"id": 280,
+		"name": "ferry_dispatch_facility_with_anchored_components_w/_backup_power"
+	},
+	{
+		"attribute": 14,
+		"id": 281,
+		"name": "ferry_dispatch_facility_with_anchored_components_w/o_backup_power"
+	},
+	{
+		"attribute": 14,
+		"id": 282,
+		"name": "ferry_dispatch_facility_with_unanchored_components_w/_backup_power"
+	},
+	{
+		"attribute": 14,
+		"id": 283,
+		"name": "ferry_dispatch_facility_with_unanchored_components_w/o_backup_power"
+	},
+	{
+		"attribute": 14,
+		"id": 284,
+		"name": "generic_ferry_dispatch_facility"
+	},
+	{
+		"attribute": 14,
+		"id": 285,
+		"name": "generic_airport_infrastructure"
+	},
+	{
+		"attribute": 14,
+		"id": 286,
+		"name": "generic_airport_fuel_facility"
+	},
+	{
+		"attribute": 14,
+		"id": 287,
+		"name": "airport_fuel_facility_with_anchored_components_w/_backup_power"
+	},
+	{
+		"attribute": 14,
+		"id": 288,
+		"name": "airport_fuel_facility_with_anchored_components_w/o_backup_power"
+	},
+	{
+		"attribute": 14,
+		"id": 289,
+		"name": "airport_fuel_facility_with_unanchored_components_w/_backup_power"
+	},
+	{
+		"attribute": 14,
+		"id": 290,
+		"name": "airport_fuel_facility_with_unanchored_components_w/o_backup_power"
+	},
+	{
+		"attribute": 14,
+		"id": 291,
+		"name": "airport_fuel_facility_with_buried_tanks"
+	},
+	{
+		"attribute": 14,
+		"id": 293,
+		"name": "glideport_seaport_stolport_ultralight_baloonport_facilities"
+	},
+	{
+		"attribute": 14,
+		"id": 296,
+		"name": "generic_potable_water_facility"
+	},
+	{
+		"attribute": 14,
+		"id": 294,
+		"name": "heliport_facilities"
+	},
+	{
+		"attribute": 14,
+		"id": 292,
+		"name": "airport_runway"
+	},
+	{
+		"attribute": 14,
+		"id": 295,
+		"name": "generic_pumping_plant"
+	},
+	{
+		"attribute": 14,
+		"id": 311,
+		"name": "medium_pumping_plant_with_anchored_components_below_grade "
+	},
+	{
+		"attribute": 14,
+		"id": 304,
+		"name": "small_pumping_plant_above_grade"
+	},
+	{
+		"attribute": 14,
+		"id": 302,
+		"name": "small_pumping_plant_with_unanchored_components"
+	},
+	{
+		"attribute": 14,
+		"id": 301,
+		"name": "small_pumping_plant_with_anchored_components"
+	},
+	{
+		"attribute": 14,
+		"id": 300,
+		"name": "medium_pumping_plant_with_unanchored_components"
+	},
+	{
+		"attribute": 14,
+		"id": 298,
+		"name": "large_pumping_plant_with_unanchored_components"
+	},
+	{
+		"attribute": 14,
+		"id": 308,
+		"name": "small_pumping_plant_with_anchored_components_above_grade "
+	},
+	{
+		"attribute": 14,
+		"id": 306,
+		"name": "medium/large_pumping_plant_above_grade"
+	},
+	{
+		"attribute": 14,
+		"id": 307,
+		"name": "small_pumping_plant_with_anchored_components_below_grade "
+	},
+	{
+		"attribute": 14,
+		"id": 309,
+		"name": "small_pumping_plant_with_unanchored_components_below_grade "
+	},
+	{
+		"attribute": 14,
+		"id": 310,
+		"name": "small_pumping_plant_with_unanchored_components_above_grade "
+	},
+	{
+		"attribute": 14,
+		"id": 297,
+		"name": "large_pumping_plant_with_anchored_components"
+	},
+	{
+		"attribute": 14,
+		"id": 305,
+		"name": "medium/large_pumping_plant_below_grade"
+	},
+	{
+		"attribute": 14,
+		"id": 264,
+		"name": "harbor_stationary_handling_equipment"
+	},
+	{
+		"attribute": 14,
+		"id": 265,
+		"name": "harbor_rail_mounted_handling_equipment"
+	},
+	{
+		"attribute": 14,
+		"id": 263,
+		"name": "harbor_generic_handling_equipment"
+	},
+	{
+		"attribute": 14,
+		"id": 303,
+		"name": "potable_water_small_puming_plant_below_grade"
+	},
+	{
+		"attribute": 14,
+		"id": 299,
+		"name": "medium_pumping_plant_with_anchored_components"
+	},
+	{
+		"attribute": 14,
+		"id": 312,
+		"name": "medium_pumping_plant_with_anchored_components_above_grade "
+	},
+	{
+		"attribute": 14,
+		"id": 313,
+		"name": "medium_pumping_plant_with_unanchored_components_below_grade "
+	},
+	{
+		"attribute": 14,
+		"id": 332,
+		"name": "large_water_treatment_plant_open/gravity"
+	},
+	{
+		"attribute": 14,
+		"id": 327,
+		"name": "on_ground_concrete_potable_water_storage_tank"
+	},
+	{
+		"attribute": 14,
+		"id": 314,
+		"name": "medium_pumping_plant_with_unanchored_components_above_grade "
+	},
+	{
+		"attribute": 14,
+		"id": 316,
+		"name": "large_pumping_plant_with_anchored_components_above_grade "
+	},
+	{
+		"attribute": 14,
+		"id": 317,
+		"name": "large_pumping_plant_with_unanchored_components_below_grade "
+	},
+	{
+		"attribute": 14,
+		"id": 323,
+		"name": "control_vaults_and_stations"
+	},
+	{
+		"attribute": 14,
+		"id": 322,
+		"name": "wells"
+	},
+	{
+		"attribute": 31,
+		"id": 319,
+		"name": "no_intersection"
+	},
+	{
+		"attribute": 31,
+		"id": 320,
+		"name": "exposed_intersection"
+	},
+	{
+		"attribute": 31,
+		"id": 321,
+		"name": "buried_intersection"
+	},
+	{
+		"attribute": 14,
+		"id": 324,
+		"name": "generic_water_storage_tank"
+	},
+	{
+		"attribute": 14,
+		"id": 325,
+		"name": "elevated_water_storage_tank"
+	},
+	{
+		"attribute": 14,
+		"id": 326,
+		"name": "buried_water_storage_tank"
+	},
+	{
+		"attribute": 14,
+		"id": 328,
+		"name": "on_ground_steel_water_storage_tank"
+	},
+	{
+		"attribute": 14,
+		"id": 329,
+		"name": "on_ground_wood_water_storage_tank"
+	},
+	{
+		"attribute": 14,
+		"id": 340,
+		"name": "medium_water_treatment_plant_open/gravity"
+	},
+	{
+		"attribute": 14,
+		"id": 341,
+		"name": "medium_water_treatment_plant_closed/pressure"
+	},
+	{
+		"attribute": 14,
+		"id": 342,
+		"name": "medium_water_treatment_plant_anchored_closed/pressure"
+	},
+	{
+		"attribute": 14,
+		"id": 334,
+		"name": "large_water_treatment_plant_anchored_open/gravity"
+	},
+	{
+		"attribute": 14,
+		"id": 540,
+		"name": "concrete water well below grade"
+	},
+	{
+		"attribute": 14,
+		"id": 337,
+		"name": "large_water_treatment_plant_unanchored_open/gravity"
+	},
+	{
+		"attribute": 14,
+		"id": 335,
+		"name": "large_water_treatment_plant_anchored_closed/pressure"
+	},
+	{
+		"attribute": 14,
+		"id": 358,
+		"name": "large_wastewater_treatment_plant_with_unanchored_components"
+	},
+	{
+		"attribute": 14,
+		"id": 330,
+		"name": "large_water_treatment_plant_anchored"
+	},
+	{
+		"attribute": 14,
+		"id": 331,
+		"name": "large_water_treatment_plant_unanchored"
+	},
+	{
+		"attribute": 14,
+		"id": 333,
+		"name": "large_water_treatment_plant_closed/pressure"
+	},
+	{
+		"attribute": 14,
+		"id": 338,
+		"name": "medium_water_treatment_plant_anchored"
+	},
+	{
+		"attribute": 14,
+		"id": 339,
+		"name": "medium_water_treatment_plant_unanchored"
+	},
+	{
+		"attribute": 14,
+		"id": 359,
+		"name": "medium_wastewater_treatment_plant"
+	},
+	{
+		"attribute": 14,
+		"id": 344,
+		"name": "medium_water_treatment_plant_unanchored_open/gravity"
+	},
+	{
+		"attribute": 14,
+		"id": 345,
+		"name": "medium_water_treatment_plant_unanchored_closed_pressure"
+	},
+	{
+		"attribute": 14,
+		"id": 346,
+		"name": "small_water_treatment_plant_anchored"
+	},
+	{
+		"attribute": 14,
+		"id": 347,
+		"name": "small_water_treatment_plant_unanchored"
+	},
+	{
+		"attribute": 14,
+		"id": 348,
+		"name": "small_water_treatment_plant_open/gravity"
+	},
+	{
+		"attribute": 14,
+		"id": 349,
+		"name": "small_water_treatment_plant_closed/pressure"
+	},
+	{
+		"attribute": 14,
+		"id": 350,
+		"name": "small_water_treatment_plant_anchored_closed/pressure"
+	},
+	{
+		"attribute": 14,
+		"id": 336,
+		"name": "large_water_treatment_plant_unanchored_closed/pressure"
+	},
+	{
+		"attribute": 14,
+		"id": 352,
+		"name": "small_water_treatment_plant_unanchored_open/gravity"
+	},
+	{
+		"attribute": 14,
+		"id": 353,
+		"name": "small_water_treatment_plant_unanchored_closed/pressure"
+	},
+	{
+		"attribute": 14,
+		"id": 354,
+		"name": "generic_water_treatment_plant"
+	},
+	{
+		"attribute": 14,
+		"id": 355,
+		"name": "generic_wastewater_treatment_plant"
+	},
+	{
+		"attribute": 14,
+		"id": 343,
+		"name": "medium_water_treatment_plant_anchored_open/gravity"
+	},
+	{
+		"attribute": 14,
+		"id": 361,
+		"name": "medium_wastewater_treatment_plant_with_unanchored_components"
+	},
+	{
+		"attribute": 14,
+		"id": 360,
+		"name": "medium_wastewater_treatment_plant_with_anchored_components"
+	},
+	{
+		"attribute": 14,
+		"id": 351,
+		"name": "small_water_treatment_plant_anchored_open/gravity"
+	},
+	{
+		"attribute": 14,
+		"id": 357,
+		"name": "large_wastewater_treatment_plant_with_anchored_components"
+	},
+	{
+		"attribute": 14,
+		"id": 356,
+		"name": "large_wastewater_treatment_plant"
+	},
+	{
+		"attribute": 14,
+		"id": 315,
+		"name": "large_pumping_plant_with_anchored_components_below_grade "
+	},
+	{
+		"attribute": 14,
+		"id": 318,
+		"name": "potable_water_large_pumping_plant_with_unanchored_components_above_grade "
+	},
+	{
+		"attribute": 14,
+		"id": 362,
+		"name": "small_wastewater_treatment_plant"
+	},
+	{
+		"attribute": 14,
+		"id": 363,
+		"name": "small_wastewater_treatment_plant_with_anchored_components"
+	},
+	{
+		"attribute": 14,
+		"id": 364,
+		"name": "small_wastewater_treatment_plant_with_unanchored_components"
+	},
+	{
+		"attribute": 14,
+		"id": 365,
+		"name": "control_vaults_and_stations"
+	},
+	{
+		"attribute": 14,
+		"id": 366,
+		"name": "generic_lift_station"
+	},
+	{
+		"attribute": 14,
+		"id": 392,
+		"name": "oil_generic_tank_farm"
+	},
+	{
+		"attribute": 14,
+		"id": 388,
+		"name": "large_lift_station_unanchored_submerged"
+	},
+	{
+		"attribute": 14,
+		"id": 386,
+		"name": "large_lift_station_anchored_submerged"
+	},
+	{
+		"attribute": 14,
+		"id": 384,
+		"name": "large_lift_station_unanchored_wet_well/dry_well"
+	},
+	{
+		"attribute": 14,
+		"id": 383,
+		"name": "large_lift_station_anchored_wet_well/dry_wel"
+	},
+	{
+		"attribute": 14,
+		"id": 367,
+		"name": "large_lift_station_anchored"
+	},
+	{
+		"attribute": 14,
+		"id": 368,
+		"name": "large_lift_station_unanchored"
+	},
+	{
+		"attribute": 14,
+		"id": 387,
+		"name": "medium_lift_station_unanchored_submerged"
+	},
+	{
+		"attribute": 14,
+		"id": 385,
+		"name": "medium_lift_station_anchored_submerged"
+	},
+	{
+		"attribute": 14,
+		"id": 382,
+		"name": "medium_lift_station_unanchored_wet_well/dry_well"
+	},
+	{
+		"attribute": 14,
+		"id": 381,
+		"name": "medium_lift_station_anchored_wet_well/dry_well"
+	},
+	{
+		"attribute": 14,
+		"id": 393,
+		"name": "oil_anchored_tank_farm"
+	},
+	{
+		"attribute": 14,
+		"id": 369,
+		"name": "medium_lift_station_anchored"
+	},
+	{
+		"attribute": 14,
+		"id": 370,
+		"name": "medium_lift_station_unanchored"
+	},
+	{
+		"attribute": 14,
+		"id": 394,
+		"name": "oil_unanchored_tank_farm"
+	},
+	{
+		"attribute": 14,
+		"id": 380,
+		"name": "small_lift_station_unanchored_submerged"
+	},
+	{
+		"attribute": 14,
+		"id": 379,
+		"name": "small_lift_station_anchored_submerged"
+	},
+	{
+		"attribute": 14,
+		"id": 378,
+		"name": "small_lift_station_unanchored_wet_well/dry_well"
+	},
+	{
+		"attribute": 14,
+		"id": 371,
+		"name": "small_lift_station_anchored"
+	},
+	{
+		"attribute": 14,
+		"id": 372,
+		"name": "small_lift_station_unanchored"
+	},
+	{
+		"attribute": 14,
+		"id": 373,
+		"name": "small_lift_station_wet_well/dry_well"
+	},
+	{
+		"attribute": 14,
+		"id": 375,
+		"name": "small_lift_station_submersible"
+	},
+	{
+		"attribute": 14,
+		"id": 377,
+		"name": "small_lift_station_anchored_wet_well/dry_well"
+	},
+	{
+		"attribute": 14,
+		"id": 376,
+		"name": "medium/large_lift_station_submersible"
+	},
+	{
+		"attribute": 14,
+		"id": 374,
+		"name": "medium/large_lift_station_wet_well/dry_well"
+	},
+	{
+		"attribute": 14,
+		"id": 389,
+		"name": "generic_oil_pumping_plant"
+	},
+	{
+		"attribute": 14,
+		"id": 390,
+		"name": "anchored_oil_pumping_plant"
+	},
+	{
+		"attribute": 14,
+		"id": 391,
+		"name": "unanchored_oil_pumping_plant"
+	},
+	{
+		"attribute": 14,
+		"id": 395,
+		"name": "oil_control_vault_and_stattion"
+	},
+	{
+		"attribute": 14,
+		"id": 396,
+		"name": "generic_oil_system_facility"
+	},
+	{
+		"attribute": 14,
+		"id": 397,
+		"name": "small_oil_refinery"
+	},
+	{
+		"attribute": 14,
+		"id": 398,
+		"name": "small_anchored_oil_refinery"
+	},
+	{
+		"attribute": 14,
+		"id": 399,
+		"name": "small_unanchored_oil_refinery"
+	},
+	{
+		"attribute": 14,
+		"id": 400,
+		"name": "medium_oil_refinery"
+	},
+	{
+		"attribute": 14,
+		"id": 401,
+		"name": "medium_anchored_oil_refinery"
+	},
+	{
+		"attribute": 14,
+		"id": 402,
+		"name": "medium_unanchored_oil_refinery"
+	},
+	{
+		"attribute": 14,
+		"id": 403,
+		"name": "large_oil_refinery"
+	},
+	{
+		"attribute": 14,
+		"id": 404,
+		"name": "large_anchored_oil_refinery"
+	},
+	{
+		"attribute": 14,
+		"id": 405,
+		"name": "large_unanchored_oil_refinery"
+	},
+	{
+		"attribute": 22,
+		"id": 406,
+		"name": "distribution_circuits_with_seismically_designed_components"
+	},
+	{
+		"attribute": 22,
+		"id": 199,
+		"name": "distribution_circuits_with_standard_components"
+	},
+	{
+		"attribute": 22,
+		"id": 407,
+		"name": "generic_electric_power_distribution_circuits"
+	},
+	{
+		"attribute": 14,
+		"id": 409,
+		"name": "generic_compressor_station"
+	},
+	{
+		"attribute": 14,
+		"id": 410,
+		"name": "compressor_station_with_anchored_components"
+	},
+	{
+		"attribute": 14,
+		"id": 411,
+		"name": "compressor_station_with_unanchored_components"
+	},
+	{
+		"attribute": 14,
+		"id": 412,
+		"name": "generic_gas_system_facility\n"
+	},
+	{
+		"attribute": 14,
+		"id": 413,
+		"name": "control_valves_and_station"
+	},
+	{
+		"attribute": 14,
+		"id": 443,
+		"name": "generic_central_office/switching_station"
+	},
+	{
+		"attribute": 14,
+		"id": 414,
+		"name": "low_voltage_substation"
+	},
+	{
+		"attribute": 14,
+		"id": 415,
+		"name": "low_voltage_substation_with_anchored_components"
+	},
+	{
+		"attribute": 14,
+		"id": 416,
+		"name": "low_voltage_substation_with_unanchored_components"
+	},
+	{
+		"attribute": 14,
+		"id": 417,
+		"name": "medium_voltage_substation"
+	},
+	{
+		"attribute": 14,
+		"id": 418,
+		"name": "medium_voltage_substation_with_anchored_components"
+	},
+	{
+		"attribute": 14,
+		"id": 419,
+		"name": "medium_voltage_substation_with_unanchored_components"
+	},
+	{
+		"attribute": 14,
+		"id": 420,
+		"name": "high_voltage_substation"
+	},
+	{
+		"attribute": 14,
+		"id": 422,
+		"name": "high_voltage_substation_with_unanchored_components"
+	},
+	{
+		"attribute": 14,
+		"id": 423,
+		"name": "generic_electric_power_substation"
+	},
+	{
+		"attribute": 14,
+		"id": 421,
+		"name": "high_voltage_substation_with_anchored_components"
+	},
+	{
+		"attribute": 14,
+		"id": 424,
+		"name": "small_generation_plant"
+	},
+	{
+		"attribute": 14,
+		"id": 425,
+		"name": "small_generation_plant_with_anchored_components"
+	},
+	{
+		"attribute": 14,
+		"id": 426,
+		"name": "small_generation_plant_with_unanchored_components"
+	},
+	{
+		"attribute": 14,
+		"id": 427,
+		"name": "medium_generation_plant"
+	},
+	{
+		"attribute": 14,
+		"id": 428,
+		"name": "medium_generation_plant_with_anchored_components"
+	},
+	{
+		"attribute": 14,
+		"id": 429,
+		"name": "medium_generation_plant_with_unanchored_components"
+	},
+	{
+		"attribute": 14,
+		"id": 430,
+		"name": "medium_generation_plant_with_unanchored_components"
+	},
+	{
+		"attribute": 14,
+		"id": 431,
+		"name": "large_generation_plant"
+	},
+	{
+		"attribute": 14,
+		"id": 432,
+		"name": "large_generation_plant_with_anchored_components"
+	},
+	{
+		"attribute": 14,
+		"id": 433,
+		"name": "large_generation_plant_with_unanchored_components"
+	},
+	{
+		"attribute": 14,
+		"id": 434,
+		"name": "generic_oil_refinery"
+	},
+	{
+		"attribute": 14,
+		"id": 435,
+		"name": "generic_generation_plant"
+	},
+	{
+		"attribute": 14,
+		"id": 438,
+		"name": "TV_station_or_transmitter"
+	},
+	{
+		"attribute": 14,
+		"id": 440,
+		"name": "generic_station_or_transmitter"
+	},
+	{
+		"attribute": 14,
+		"id": 441,
+		"name": "generic_communication_facility"
+	},
+	{
+		"attribute": 14,
+		"id": 442,
+		"name": "communication_control_vault"
+	},
+	{
+		"attribute": 14,
+		"id": 444,
+		"name": "central_office/switching_station_below_grade"
+	},
+	{
+		"attribute": 14,
+		"id": 445,
+		"name": "central_office/switching_station_above_grade"
+	},
+	{
+		"attribute": 14,
+		"id": 446,
+		"name": "central_office/switching_station_with_anchored_components"
+	},
+	{
+		"attribute": 14,
+		"id": 447,
+		"name": "central_office/switching_station_below_grade_with_anchored_components"
+	},
+	{
+		"attribute": 14,
+		"id": 448,
+		"name": "central_office/switching_station_below_grade_with_unanchored_components"
+	},
+	{
+		"attribute": 14,
+		"id": 450,
+		"name": "central_office/switching_station_above_grade_with_unanchored_components"
+	},
+	{
+		"attribute": 14,
+		"id": 449,
+		"name": "central_office/switching_station_with_unanchored_components"
+	},
+	{
+		"attribute": 14,
+		"id": 451,
+		"name": "central_office/switching_station_above_grade_with_anchored_components"
+	},
+	{
+		"attribute": 21,
+		"id": 452,
+		"name": "generic_cereals"
+	},
+	{
+		"attribute": 21,
+		"id": 453,
+		"name": "wheat"
+	},
+	{
+		"attribute": 21,
+		"id": 454,
+		"name": "maize"
+	},
+	{
+		"attribute": 21,
+		"id": 456,
+		"name": "sorghum"
+	},
+	{
+		"attribute": 21,
+		"id": 457,
+		"name": "barley"
+	},
+	{
+		"attribute": 21,
+		"id": 458,
+		"name": "rye"
+	},
+	{
+		"attribute": 21,
+		"id": 459,
+		"name": "oats"
+	},
+	{
+		"attribute": 21,
+		"id": 460,
+		"name": "millets"
+	},
+	{
+		"attribute": 21,
+		"id": 461,
+		"name": "mixed_cereals"
+	},
+	{
+		"attribute": 21,
+		"id": 462,
+		"name": "leafy_or_stem_vegetables"
+	},
+	{
+		"attribute": 22,
+		"id": 436,
+		"name": "generic_communication_cable"
+	},
+	{
+		"attribute": 21,
+		"id": 455,
+		"name": "rice"
+	},
+	{
+		"attribute": 21,
+		"id": 463,
+		"name": "fruit-bearing_vegetables"
+	},
+	{
+		"attribute": 21,
+		"id": 464,
+		"name": "root_bulb_or_tuberous_vegetables"
+	},
+	{
+		"attribute": 21,
+		"id": 465,
+		"name": "mushrooms_and_trufffles"
+	},
+	{
+		"attribute": 21,
+		"id": 466,
+		"name": "generic_vegetables_and_melons"
+	},
+	{
+		"attribute": 21,
+		"id": 467,
+		"name": "tropical_and_subtropical_fruits"
+	},
+	{
+		"attribute": 21,
+		"id": 468,
+		"name": "citrus_fruit"
+	},
+	{
+		"attribute": 21,
+		"id": 469,
+		"name": "grapes"
+	},
+	{
+		"attribute": 21,
+		"id": 470,
+		"name": "berries"
+	},
+	{
+		"attribute": 21,
+		"id": 471,
+		"name": "pome_fruits_and_stone_fruits"
+	},
+	{
+		"attribute": 21,
+		"id": 472,
+		"name": "nuts"
+	},
+	{
+		"attribute": 21,
+		"id": 473,
+		"name": "generic_fruit_and_nuts"
+	},
+	{
+		"attribute": 21,
+		"id": 474,
+		"name": "soya_beans"
+	},
+	{
+		"attribute": 21,
+		"id": 475,
+		"name": "groundnuts"
+	},
+	{
+		"attribute": 21,
+		"id": 476,
+		"name": "temporary_oilseed_crops"
+	},
+	{
+		"attribute": 21,
+		"id": 477,
+		"name": "permanent_oilseed_crops"
+	},
+	{
+		"attribute": 21,
+		"id": 478,
+		"name": "generic_oilseed_crops"
+	},
+	{
+		"attribute": 21,
+		"id": 479,
+		"name": "root/tuber_crops_with_high_starch_or_inulin_content"
+	},
+	{
+		"attribute": 21,
+		"id": 480,
+		"name": "beverage_crops"
+	},
+	{
+		"attribute": 21,
+		"id": 481,
+		"name": "spice_crops"
+	},
+	{
+		"attribute": 21,
+		"id": 482,
+		"name": "leguminous_crops"
+	},
+	{
+		"attribute": 21,
+		"id": 483,
+		"name": "sugar_beet"
+	},
+	{
+		"attribute": 21,
+		"id": 484,
+		"name": "sugar_cane"
+	},
+	{
+		"attribute": 21,
+		"id": 485,
+		"name": "sweet_sorghum"
+	},
+	{
+		"attribute": 21,
+		"id": 486,
+		"name": "generic_sugar_crops"
+	},
+	{
+		"attribute": 21,
+		"id": 487,
+		"name": "grasses_and_other_fodder_crops"
+	},
+	{
+		"attribute": 21,
+		"id": 488,
+		"name": "fibre_crops"
+	},
+	{
+		"attribute": 21,
+		"id": 489,
+		"name": "medicinal_aromatic_pesticidal_crops"
+	},
+	{
+		"attribute": 21,
+		"id": 490,
+		"name": "rubber"
+	},
+	{
+		"attribute": 21,
+		"id": 491,
+		"name": "flower_crops"
+	},
+	{
+		"attribute": 21,
+		"id": 492,
+		"name": "tobacco"
+	},
+	{
+		"attribute": 21,
+		"id": 493,
+		"name": "generic_beverage_and_spice_crops"
+	},
+	{
+		"attribute": 21,
+		"id": 494,
+		"name": "generic_crops"
+	},
+	{
+		"attribute": 32,
+		"id": 495,
+		"name": "temporary"
+	},
+	{
+		"attribute": 32,
+		"id": 496,
+		"name": "permanent"
+	},
+	{
+		"attribute": 33,
+		"id": 497,
+		"name": "autumn/winter"
+	},
+	{
+		"attribute": 33,
+		"id": 498,
+		"name": "spring/summer"
+	},
+	{
+		"attribute": 34,
+		"id": 499,
+		"name": "wetland"
+	},
+	{
+		"attribute": 34,
+		"id": 500,
+		"name": "dryland"
+	},
+	{
+		"attribute": 61,
+		"id": 502,
+		"name": "generic_unpaved_road"
+	},
+	{
+		"attribute": 61,
+		"id": 501,
+		"name": "generic_paved_road"
+	},
+	{
+		"attribute": 62,
+		"id": 503,
+		"name": "0"
+	},
+	{
+		"attribute": 62,
+		"id": 504,
+		"name": "1"
+	},
+	{
+		"attribute": 2,
+		"id": 528,
+		"name": "bank"
+	},
+	{
+		"attribute": 16,
+		"id": 122,
+		"name": "road_bridge_continuous_steel_conventional_design_<20m"
+	},
+	{
+		"attribute": 16,
+		"id": 115,
+		"name": "road_bridge_continuous_steel_conventional_design_>20m"
+	},
+	{
+		"attribute": 16,
+		"id": 113,
+		"name": "road_bridge_steel_multicolumn_bent_simple_support_conventional_design_>20m"
+	},
+	{
+		"attribute": 16,
+		"id": 121,
+		"name": "road_bridge_steel_multicolumn_bent_simple_support_conventional_design_<20m"
+	},
+	{
+		"attribute": 73,
+		"id": 536,
+		"name": "local railway"
+	},
+	{
+		"attribute": 73,
+		"id": 534,
+		"name": "national railway"
+	},
+	{
+		"attribute": 73,
+		"id": 535,
+		"name": "district railway"
+	},
+	{
+		"attribute": 20,
+		"id": 238,
+		"name": "lightrail_bridge_single_span_lenght<20m_seismic_design"
+	},
+	{
+		"attribute": 14,
+		"id": 439,
+		"name": "AM_or_FM_Radio_station_or_transmitter"
+	},
+	{
+		"attribute": 11,
+		"id": 537,
+		"name": "generic_masonry"
+	},
+	{
+		"attribute": 11,
+		"id": 538,
+		"name": "generic earthen building"
+	},
+	{
+		"attribute": 78,
+		"id": 542,
+		"name": "distribution"
+	},
+	{
+		"attribute": 2,
+		"id": 581,
+		"name": "small_hospital_trauma_level_1_with_helicopter_landing"
+	},
+	{
+		"attribute": 14,
+		"id": 549,
+		"name": ""
+	},
+	{
+		"attribute": 2,
+		"id": 582,
+		"name": "small_hospital_trauma_level_3_with_helicopter_landing"
+	},
+	{
+		"attribute": 2,
+		"id": 580,
+		"name": "hospital_trauma_level_3_without_helicopter_landing"
+	},
+	{
+		"attribute": 2,
+		"id": 550,
+		"name": "historical house"
+	},
+	{
+		"attribute": 2,
+		"id": 583,
+		"name": "small_hospital_trauma_level_2_with_helicopter_landing"
+	},
+	{
+		"attribute": 2,
+		"id": 544,
+		"name": "residential with retail trade at ground floor "
+	},
+	{
+		"attribute": 2,
+		"id": 545,
+		"name": "residential with entertainment (bar & restaurant) at ground floor "
+	},
+	{
+		"attribute": 2,
+		"id": 37,
+		"name": "emergency_operation_center"
+	},
+	{
+		"attribute": 2,
+		"id": 551,
+		"name": "residential with theater or cinema at ground floor"
+	},
+	{
+		"attribute": 2,
+		"id": 552,
+		"name": "historical_house"
+	},
+	{
+		"attribute": 2,
+		"id": 547,
+		"name": "monument"
+	},
+	{
+		"attribute": 2,
+		"id": 548,
+		"name": "museum"
+	},
+	{
+		"attribute": 2,
+		"id": 543,
+		"name": "residential with bank at ground floor"
+	},
+	{
+		"attribute": 14,
+		"id": 553,
+		"name": "road toll booth"
+	},
+	{
+		"attribute": 2,
+		"id": 554,
+		"name": "hospital_with_helicopter_landing"
+	},
+	{
+		"attribute": 2,
+		"id": 555,
+		"name": "hospital_without_helicopter_landing"
+	},
+	{
+		"attribute": 2,
+		"id": 556,
+		"name": "hospital_trauma_level_1"
+	},
+	{
+		"attribute": 2,
+		"id": 557,
+		"name": "hospital_trauma_level_2"
+	},
+	{
+		"attribute": 2,
+		"id": 558,
+		"name": "hospital_trauma_level_3"
+	},
+	{
+		"attribute": 2,
+		"id": 559,
+		"name": "large_hospital"
+	},
+	{
+		"attribute": 2,
+		"id": 560,
+		"name": "small_hospital_with_helicopter_landing"
+	},
+	{
+		"attribute": 2,
+		"id": 561,
+		"name": "small_hospital_without_helicopter_landing"
+	},
+	{
+		"attribute": 2,
+		"id": 562,
+		"name": "medium_hospital_with_helicopter_landing"
+	},
+	{
+		"attribute": 2,
+		"id": 563,
+		"name": "medium_hospital_without_helicopter_landing"
+	},
+	{
+		"attribute": 2,
+		"id": 564,
+		"name": "large_hospital_with_helicopter_landing"
+	},
+	{
+		"attribute": 2,
+		"id": 565,
+		"name": "large_hospital_without_helicopter_landing"
+	},
+	{
+		"attribute": 2,
+		"id": 566,
+		"name": "small_hospital_trauma_level_1"
+	},
+	{
+		"attribute": 2,
+		"id": 567,
+		"name": "small_hospital_trauma_level_2"
+	},
+	{
+		"attribute": 2,
+		"id": 568,
+		"name": "small_hospital_trauma_level_3"
+	},
+	{
+		"attribute": 2,
+		"id": 569,
+		"name": "medium_hospital_trauma_level_1"
+	},
+	{
+		"attribute": 2,
+		"id": 570,
+		"name": "medium_hospital_trauma_level_2"
+	},
+	{
+		"attribute": 2,
+		"id": 571,
+		"name": "medium_hospital_trauma_level_3"
+	},
+	{
+		"attribute": 2,
+		"id": 572,
+		"name": "large_hospital_trauma_level_1"
+	},
+	{
+		"attribute": 2,
+		"id": 573,
+		"name": "large_hospital_trauma_level_2"
+	},
+	{
+		"attribute": 2,
+		"id": 574,
+		"name": "large_hospital_trauma_level_3"
+	},
+	{
+		"attribute": 2,
+		"id": 575,
+		"name": "hospital_trauma_level_1_with_helicopter_landing"
+	},
+	{
+		"attribute": 2,
+		"id": 576,
+		"name": "hospital_trauma_level_1_without_helicopter_landing"
+	},
+	{
+		"attribute": 2,
+		"id": 577,
+		"name": "hospital_trauma_level_2_with_helicopter_landing"
+	},
+	{
+		"attribute": 2,
+		"id": 578,
+		"name": "hospital_trauma_level_2_without_helicopter_landing"
+	},
+	{
+		"attribute": 2,
+		"id": 579,
+		"name": "hospital_trauma_level_3_with_helicopter_landing"
+	},
+	{
+		"attribute": 2,
+		"id": 584,
+		"name": "small_hospital_trauma_level_1_without_helicopter_landing"
+	},
+	{
+		"attribute": 2,
+		"id": 585,
+		"name": "small_hospital_trauma_level_2_without_helicopter_landing"
+	},
+	{
+		"attribute": 2,
+		"id": 586,
+		"name": "small_hospital_trauma_level_3_without_helicopter_landing"
+	},
+	{
+		"attribute": 2,
+		"id": 587,
+		"name": "medium_hospital_trauma_level_1_with_helicopter_landing"
+	},
+	{
+		"attribute": 2,
+		"id": 588,
+		"name": "medium_hospital_trauma_level_2_with_helicopter_landing"
+	},
+	{
+		"attribute": 2,
+		"id": 589,
+		"name": "medium_hospital_trauma_level_3_with_helicopter_landing"
+	},
+	{
+		"attribute": 2,
+		"id": 590,
+		"name": "medium_hospital_trauma_level_1_without_helicopter_landing"
+	},
+	{
+		"attribute": 2,
+		"id": 591,
+		"name": "medium_hospital_trauma_level_2_without_helicopter_landing"
+	},
+	{
+		"attribute": 2,
+		"id": 592,
+		"name": "medium_hospital_trauma_level_3_without_helicopter_landing"
+	},
+	{
+		"attribute": 2,
+		"id": 593,
+		"name": "large_hospital_trauma_level_1_with_helicopter_landing"
+	},
+	{
+		"attribute": 2,
+		"id": 594,
+		"name": "large_hospital_trauma_level_2_with_helicopter_landing"
+	},
+	{
+		"attribute": 2,
+		"id": 595,
+		"name": "large_hospital_trauma_level_3_with_helicopter_landing"
+	},
+	{
+		"attribute": 2,
+		"id": 596,
+		"name": "large_hospital_trauma_level_1_without_helicopter_landing"
+	},
+	{
+		"attribute": 2,
+		"id": 597,
+		"name": "large_hospital_trauma_level_2_without_helicopter_landing"
+	},
+	{
+		"attribute": 2,
+		"id": 598,
+		"name": "large_hospital_trauma_level_3_without_helicopter_landing"
+	},
+	{
+		"attribute": 14,
+		"id": 599,
+		"name": "generic_gateway_facility"
+	},
+	{
+		"attribute": 14,
+		"id": 600,
+		"name": "airport_ gateway"
+	},
+	{
+		"attribute": 14,
+		"id": 601,
+		"name": "port_gateway"
+	},
+	{
+		"attribute": 22,
+		"id": 604,
+		"name": "generic_telephon_cable"
+	},
+	{
+		"attribute": 22,
+		"id": 605,
+		"name": "burried_telephon_cable"
+	},
+	{
+		"attribute": 22,
+		"id": 606,
+		"name": "overhead_telephon_cable"
+	},
+	{
+		"attribute": 22,
+		"id": 607,
+		"name": "generic_optic_fiber_cable"
+	},
+	{
+		"attribute": 22,
+		"id": 608,
+		"name": "burried_optic_fiber_cable"
+	},
+	{
+		"attribute": 22,
+		"id": 609,
+		"name": "overhead_optic_fiber_cable"
+	},
+	{
+		"attribute": 22,
+		"id": 610,
+		"name": "generic_tv_cable"
+	},
+	{
+		"attribute": 22,
+		"id": 611,
+		"name": "burried_tv_cable"
+	},
+	{
+		"attribute": 22,
+		"id": 612,
+		"name": "overhead_tv_cable"
+	},
+	{
+		"attribute": 22,
+		"id": 602,
+		"name": "generic_burried_communication_cable"
+	},
+	{
+		"attribute": 22,
+		"id": 603,
+		"name": "generic_overhead_communication_cable"
+	},
+	{
+		"attribute": 175,
+		"id": 613,
+		"name": "Generic artificial surfaces"
+	},
+	{
+		"attribute": 175,
+		"id": 614,
+		"name": "Generic urban fabric"
+	},
+	{
+		"attribute": 175,
+		"id": 615,
+		"name": "Continuous urban fabri"
+	},
+	{
+		"attribute": 175,
+		"id": 616,
+		"name": "Discontinuous urban fabric"
+	},
+	{
+		"attribute": 175,
+		"id": 617,
+		"name": "Generic Ind. Comm. Transp."
+	},
+	{
+		"attribute": 175,
+		"id": 618,
+		"name": "Industrial or commercial units"
+	},
+	{
+		"attribute": 175,
+		"id": 619,
+		"name": "Road and rail networks and associated land"
+	},
+	{
+		"attribute": 175,
+		"id": 620,
+		"name": "Port areas"
+	},
+	{
+		"attribute": 175,
+		"id": 621,
+		"name": "Airports"
+	},
+	{
+		"attribute": 175,
+		"id": 622,
+		"name": "Generic Mine Dump Constr."
+	},
+	{
+		"attribute": 175,
+		"id": 623,
+		"name": "Mineral extraction sites"
+	},
+	{
+		"attribute": 175,
+		"id": 624,
+		"name": "Dump sites"
+	},
+	{
+		"attribute": 175,
+		"id": 625,
+		"name": "Construction sites"
+	},
+	{
+		"attribute": 175,
+		"id": 626,
+		"name": "Generic Non-agr. Veg."
+	},
+	{
+		"attribute": 175,
+		"id": 627,
+		"name": "Green urban areas"
+	},
+	{
+		"attribute": 175,
+		"id": 628,
+		"name": "Sport&Leisures"
+	},
+	{
+		"attribute": 175,
+		"id": 629,
+		"name": "Generic wetlands"
+	},
+	{
+		"attribute": 175,
+		"id": 630,
+		"name": "Generic inland wetlands"
+	},
+	{
+		"attribute": 175,
+		"id": 631,
+		"name": "Inland marshes"
+	},
+	{
+		"attribute": 175,
+		"id": 632,
+		"name": "Peat bogs"
+	},
+	{
+		"attribute": 175,
+		"id": 633,
+		"name": "Generic maritime wetlands"
+	},
+	{
+		"attribute": 175,
+		"id": 634,
+		"name": "Salt marshes"
+	},
+	{
+		"attribute": 175,
+		"id": 635,
+		"name": "Salines"
+	},
+	{
+		"attribute": 175,
+		"id": 636,
+		"name": "Interstidal flats"
+	},
+	{
+		"attribute": 175,
+		"id": 637,
+		"name": "Generic water bodies"
+	},
+	{
+		"attribute": 175,
+		"id": 638,
+		"name": "Generic inland waters"
+	},
+	{
+		"attribute": 175,
+		"id": 639,
+		"name": "Water courses"
+	},
+	{
+		"attribute": 175,
+		"id": 640,
+		"name": "Water bodies"
+	},
+	{
+		"attribute": 175,
+		"id": 641,
+		"name": "Generic marine waters"
+	},
+	{
+		"attribute": 175,
+		"id": 642,
+		"name": "Coastal lagoons"
+	},
+	{
+		"attribute": 175,
+		"id": 643,
+		"name": "Estuaries"
+	},
+	{
+		"attribute": 175,
+		"id": 644,
+		"name": "Sea&Ocean"
+	},
+	{
+		"attribute": 2,
+		"id": 5,
+		"name": "generic leisure & religious"
+	},
+	{
+		"attribute": 2,
+		"id": 546,
+		"name": "sport"
+	},
+	{
+		"attribute": 2,
+		"id": 6,
+		"name": "generic government/administration"
+	},
+	{
+		"attribute": 175,
+		"id": 645,
+		"name": "Generic agricultural areas"
+	},
+	{
+		"attribute": 175,
+		"id": 646,
+		"name": "Generic arable land"
+	},
+	{
+		"attribute": 175,
+		"id": 647,
+		"name": "Non-irrigated arable land"
+	},
+	{
+		"attribute": 175,
+		"id": 648,
+		"name": "Permanently irrigated land"
+	},
+	{
+		"attribute": 175,
+		"id": 649,
+		"name": "Rice fields"
+	},
+	{
+		"attribute": 175,
+		"id": 650,
+		"name": "Generic permanent crops"
+	},
+	{
+		"attribute": 175,
+		"id": 651,
+		"name": "Vineyards"
+	},
+	{
+		"attribute": 175,
+		"id": 652,
+		"name": "Fruit trees and berry plantations"
+	},
+	{
+		"attribute": 175,
+		"id": 653,
+		"name": "Olive groves"
+	},
+	{
+		"attribute": 175,
+		"id": 654,
+		"name": "Generic pastures"
+	},
+	{
+		"attribute": 175,
+		"id": 655,
+		"name": "Generic heterogeneous agricultural areas"
+	},
+	{
+		"attribute": 175,
+		"id": 656,
+		"name": "Annual crops associated with permanent crops"
+	},
+	{
+		"attribute": 175,
+		"id": 657,
+		"name": "Complex cultivation patterns"
+	},
+	{
+		"attribute": 175,
+		"id": 658,
+		"name": "and principally occupied by agriculture, with significant areas of natural vegetation"
+	},
+	{
+		"attribute": 175,
+		"id": 659,
+		"name": "Agro-forestry areas"
+	},
+	{
+		"attribute": 175,
+		"id": 660,
+		"name": "Generic forest and semi natural areas"
+	},
+	{
+		"attribute": 175,
+		"id": 661,
+		"name": "Generic forests"
+	},
+	{
+		"attribute": 175,
+		"id": 662,
+		"name": "Broad-leaved forest"
+	},
+	{
+		"attribute": 175,
+		"id": 663,
+		"name": "Coniferous forest"
+	},
+	{
+		"attribute": 175,
+		"id": 664,
+		"name": "Mixed forest"
+	},
+	{
+		"attribute": 175,
+		"id": 665,
+		"name": "Generic scruband/orherbaceous vegetation associations"
+	},
+	{
+		"attribute": 175,
+		"id": 666,
+		"name": "Natural grasslands"
+	},
+	{
+		"attribute": 175,
+		"id": 667,
+		"name": "Moors and heathland"
+	},
+	{
+		"attribute": 175,
+		"id": 668,
+		"name": "Sclerophyllous vegetation"
+	},
+	{
+		"attribute": 175,
+		"id": 669,
+		"name": "Transitional woodland-shrub"
+	},
+	{
+		"attribute": 175,
+		"id": 670,
+		"name": "Generic open spaces with little or no vegetation"
+	},
+	{
+		"attribute": 175,
+		"id": 671,
+		"name": "Beaches, dunes, sands"
+	},
+	{
+		"attribute": 175,
+		"id": 672,
+		"name": "Bare rocks"
+	},
+	{
+		"attribute": 175,
+		"id": 673,
+		"name": "Sparsely vegetated areas"
+	},
+	{
+		"attribute": 175,
+		"id": 674,
+		"name": "Burnt areas"
+	},
+	{
+		"attribute": 175,
+		"id": 675,
+		"name": "Glaciers and perpetual snow"
+	}]
+}

@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/plugins/rasor" >
+        <file>rasor_icon_new.png</file>
+    </qresource>
+    <qresource prefix="/plugins/rasor" >
+        <file>rasor_icon_osm.png</file>
+    </qresource>
+    <qresource prefix="/plugins/rasor" >
+        <file>rasor_icon_buildings.png</file>
+    </qresource>
+    <qresource prefix="/plugins/rasor" >
+        <file>rasor_icon_upload.png</file>
+    </qresource>
+</RCC>

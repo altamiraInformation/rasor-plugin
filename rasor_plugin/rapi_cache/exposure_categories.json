@@ -1,0 +1,84 @@
+{
+	"meta": {
+		"total_count": 11,
+		"limit": 0,
+		"offset": 0
+	},
+	"objects": [{
+		"canberaster": false,
+		"name": "agricultural sites",
+		"id": 8,
+		"descr": "",
+		"icon": "ocha_icon-other_cluster_agriculture"
+	},
+	{
+		"canberaster": false,
+		"name": "areas of natural interest",
+		"id": 9,
+		"descr": "",
+		"icon": "ocha_icon-other_cluster_multicluster"
+	},
+	{
+		"canberaster": false,
+		"name": "buildings",
+		"id": 1,
+		"descr": "",
+		"icon": "ocha_icon-infrastructure_building"
+	},
+	{
+		"canberaster": false,
+		"name": "facilities",
+		"id": 2,
+		"descr": "point element of the built environment that cannot be assimilated to a building (e.g. airports, communication antennas, fuel facilities)",
+		"icon": "ocha_icon-logistics_airport"
+	},
+	{
+		"canberaster": false,
+		"name": "high potential loss facilities",
+		"id": 3,
+		"descr": "dams, nuclear power plants, military installations",
+		"icon": "ocha_icon-logistics_airport_military"
+	},
+	{
+		"canberaster": true,
+		"name": "land_use",
+		"id": 11,
+		"descr": "",
+		"icon": "ocha_icon-socioeconomic_urban_rural"
+	},
+	{
+		"canberaster": false,
+		"name": "lifelines",
+		"id": 7,
+		"descr": "",
+		"icon": "ocha_icon-other_cluster_safety_security"
+	},
+	{
+		"canberaster": false,
+		"name": "light rail network",
+		"id": 6,
+		"descr": "",
+		"icon": "ocha_icon-logistics_bus"
+	},
+	{
+		"canberaster": true,
+		"name": "population",
+		"id": 10,
+		"descr": "",
+		"icon": "ocha_icon-crisis_population_displacement"
+	},
+	{
+		"canberaster": false,
+		"name": "railway network",
+		"id": 5,
+		"descr": "",
+		"icon": "ocha_icon-logistics_train"
+	},
+	{
+		"canberaster": false,
+		"name": "road network",
+		"id": 4,
+		"descr": "",
+		"icon": "ocha_icon-logistics_road"
+	}]
+}
