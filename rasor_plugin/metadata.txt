@@ -26,8 +26,8 @@ email=joan.sala@altamira-information.com
 tags=RASOR, OSM, Rasor-Project, FP7
 
 homepage=http://www.rasor-project.eu/
-tracker=http://www.altamira-information.com/contact_us
-repository=http://www.altamira-information.com/contact_us
+tracker=https://github.com/jsalcal/rasor-plugin/issues
+repository=https://github.com/jsalcal/rasor-plugin
 category=Plugins
 icon=icon.png
 # experimental flag
