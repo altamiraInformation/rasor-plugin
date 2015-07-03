@@ -1,33 +1,11 @@
-Plugin Builder Results
-
-Your plugin rasor was created in:
-    /home/qgis/rasor
-
-Your QGIS plugin directory is located at:
-    /home/qgis/.qgis2/python/plugins
-
-What's Next:
-
-  * Copy the entire directory containing your new plugin to the QGIS plugin
-    directory
-
-  * Compile the resources file using pyrcc4
-
-  * Run the tests (``make test``)
-
-  * Test the plugin by enabling it in the QGIS plugin manager
-
-  * Customize it by editing the implementation file: ``rasor_plugin.py``
-
-  * Create your own custom icon, replacing the default icon.png
-
-  * Modify your user interface by opening rasor.ui in Qt Designer
-
-  * You can use the Makefile to compile your Ui and resource files when
-    you make changes. This requires GNU make (gmake)
-
-For more information, see the PyQGIS Developer Cookbook at:
-http://www.qgis.org/pyqgis-cookbook/index.html
-
-(C) 2011-2014 GeoApt LLC - geoapt.com
-Git revision : $Format:%H$
+name=RASOR Plugin
+qgisMinimumVersion=2.2
+description=Plugin developed for the FP7 RASOR Project (http://www.rasor-project.eu/) 
+about=Able to generate RASOR compliant layers and upload them to the platform. OSM support in future releases.
+version=2.0
+author=Joan Sala (Altamira-Information)
+email=joan.sala@altamira-information.com
+tags=RASOR, OSM, Rasor-Project, FP7
+homepage=http://www.rasor-project.eu/
+tracker=https://github.com/jsalcal/rasor-plugin/issues
+repository=https://github.com/jsalcal/rasor-plugin
