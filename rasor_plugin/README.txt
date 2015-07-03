@@ -9,4 +9,7 @@ tags=RASOR, OSM, Rasor-Project, FP7
 homepage=http://www.rasor-project.eu/
 tracker=https://github.com/jsalcal/rasor-plugin/issues
 repository=https://github.com/jsalcal/rasor-plugin
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
