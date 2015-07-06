@@ -1,3 +1,37 @@
-Plugin developed for the FP7 RASOR Project (http://www.rasor-project.eu/)
+# This file contains metadata for your plugin. Since 
+# version 2.0 of QGIS this is the proper way to supply 
+# information about a plugin. The old method of 
+# embedding metadata in __init__.py will 
+# is no longer supported since version 2.0.
 
-Able to generate RASOR compliant layers and upload them to the platform. OSM support in future releases.
+# This file should be included when you package your plugin.# Mandatory items:
+
+[general]
+name=RASOR Plugin
+qgisMinimumVersion=2.2
+description=Plugin developed for the FP7 RASOR Project (http://www.rasor-project.eu/) 
+about=Able to generate RASOR compliant layers and upload them to the platform. OSM support in future releases.
+version=2.0
+author=Joan Sala (Altamira-Information)
+email=joan.sala@altamira-information.com
+
+# End of mandatory metadata
+
+# Recommended items:
+
+# Uncomment the following line and add your changelog:
+# changelog=
+
+# Tags are comma separated with spaces allowed
+tags=RASOR, OSM, Rasor-Project, FP7
+
+homepage=http://www.rasor-project.eu/
+tracker=https://github.com/jsalcal/rasor-plugin/issues
+repository=https://github.com/jsalcal/rasor-plugin
+category=Plugins
+icon=icon.png
+# experimental flag
+experimental=True
+
+# deprecated flag (applies to the whole plugin, not just a single version)
+deprecated=False
