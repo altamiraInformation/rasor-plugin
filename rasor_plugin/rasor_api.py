@@ -45,7 +45,7 @@ class rasor_api:
 			outFeature = ogr.Feature(outLayerDefn)
 			# Add field values from input Layer
 			for i in range(0, outLayerDefn.GetFieldCount()):
-				val = 'undefined'
+				val = 'NULL'
 				if ((i % 2) == 0):	# RC
 					val = inFeature.GetField(i/2)
 				else:				# RD
@@ -53,6 +53,8 @@ class rasor_api:
 					if enum[(i-1)/2] and val != None:
 						obj=self.search_object(eval, 'id', int(inFeature.GetField((i-1)/2)))
 						if obj != '': 	val = str(obj['name'])
+					else:
+						val = 'NULL'
 				# Add value to dbf column
 				outFeature.SetField(outLayerDefn.GetFieldDefn(i).GetNameRef(), val)
 			# Add geometry
