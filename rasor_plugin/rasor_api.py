@@ -4,7 +4,7 @@ from osgeo import gdal
 
 class rasor_api:
 	#### Translate a file
-	def translate_file(self, iface, progress, fileName, eatt, eval, tmpdir):		
+	def translate_file(self, iface, progress, fileName, idcatexp, eatt, eval, tmpdir):		
 		progress.setValue(2)
 		## Read the input layer
 		layerName = os.path.splitext(os.path.basename(fileName))[0]
@@ -12,7 +12,7 @@ class rasor_api:
 		inLayer = inDataSource.GetLayer()
 		inLayer_defn = inLayer.GetLayerDefn()
 		
-		## Create the output Layer		
+		## Create the output Layer	
 		outShapefile = tmpdir+'/'+layerName+'.tmp'
 		print "Temporary file: "+outShapefile
 		outDriver = ogr.GetDriverByName("ESRI Shapefile")
@@ -25,11 +25,16 @@ class rasor_api:
 		enum=[]
 		for i in range(inLayer_defn.GetFieldCount()):
 			field_name = inLayer_defn.GetFieldDefn(i).GetName()
-			parts=field_name.split('-') # OPT/MAN tooltip
-			obj=self.search_object(eatt, 'name', parts[0])
+			if "#" in field_name:				
+				parts=field_name.split('#') # OPT/MAN tooltip
+				field_name = parts[0]				
+			
+			obj=self.search_object_dual(eatt, 'name', field_name, 'category', idcatexp)
+			
 			if obj != '':
+				print "OK: Found VAL=%s with ID=%s" % (obj['name'], obj['id'])
 				# Add a new field
-				new_field1 = ogr.FieldDefn('_rc_'+str(obj['id']), ogr.OFTInteger)
+				new_field1 = ogr.FieldDefn('_rc_'+str(obj['id']), ogr.OFTString)
 				new_field2 = ogr.FieldDefn('_rd_'+str(obj['id']), ogr.OFTString)
 				outLayer.CreateField(new_field1)
 				outLayer.CreateField(new_field2)
@@ -37,24 +42,25 @@ class rasor_api:
 				arr=self.search_attributes(eval, int(obj['id']))
 				if len(arr):	enum.append(1)
 				else:			enum.append(0)
-
+			else:
+				print "ERR: "+field_name+" not found."
+				
 		## Add features to the ouput Layer
 		outLayerDefn = outLayer.GetLayerDefn()
-		for i in range(0, inLayer.GetFeatureCount()):
-			inFeature = inLayer.GetFeature(i)
+		for f in range(0, inLayer.GetFeatureCount()):
+			inFeature = inLayer.GetFeature(f)
 			outFeature = ogr.Feature(outLayerDefn)
 			# Add field values from input Layer
 			for i in range(0, outLayerDefn.GetFieldCount()):
 				if ((i % 2) == 0):	# RC
-					val = str(inFeature.GetField(i/2))
+					val = inFeature.GetField(i/2)			
 				else:				# RD
 					val = inFeature.GetField((i-1)/2)
 					if enum[(i-1)/2] and val != None:
 						obj=self.search_object(eval, 'id', int(inFeature.GetField((i-1)/2)))
-						if obj != '': 	val = str(obj['name'])
-
+						if obj != '': 	val = obj['name']			
 				# Add value to dbf column
-				if val != None: outFeature.SetField(outLayerDefn.GetFieldDefn(i).GetNameRef(), val)
+				if val != None: outFeature.SetField(outLayerDefn.GetFieldDefn(i).GetNameRef(), str(val))
 			# Add geometry
 			geom = inFeature.GetGeometryRef()		
 			outFeature.SetGeometry(geom)
@@ -142,10 +148,17 @@ class rasor_api:
 				return elem['id']
 		return ''
 
-	#### Search one-object in JSON by NAME
+	#### Search one-object in JSON by 1 tag
 	def search_object(self, json, tag, value):
 		for elem in json['objects']:
 			if elem[tag]==value:
+				return elem
+		return ''
+
+	#### Search one-object in JSON by 2 tags
+	def search_object_dual(self, json, tag, value, tag2, value2):
+		for elem in json['objects']:
+			if elem[tag]==value and elem[tag2]==value2:
 				return elem
 		return ''
 		

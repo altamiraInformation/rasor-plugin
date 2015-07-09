@@ -259,14 +259,16 @@ class rasor:
 	for elem in haz['objects']:
 		self.dlg.hazardBox.addItem(str(elem["name"]))
 		h+=1
-
+	self.dlg.hazardBox.setCurrentRow(0)
+	
 	# Impacts list (multiple selection)
 	i=0	
 	self.dlg.impactBox.clear()
 	for elem in imp['objects']:
 		self.dlg.impactBox.addItem(str(elem["name"]))
 		i+=1
-		
+	self.dlg.impactBox.setCurrentRow(0)
+	
 	# show the dialog
 	self.dlg.show()
 
@@ -327,14 +329,14 @@ class rasor:
 			attval = selAttr[att]
 			labels.append(str(attval['name']))
 			ids.append(str(attval['id']))
-			pr.addAttributes([QgsField(str(attval['name'])+'-[MAN]-'+str(int(attval['evaluation'])), QVariant.String)])
+			pr.addAttributes([QgsField(str(attval['name'])+'#-[MAN]-'+str(int(attval['evaluation'])), QVariant.String)])
 		
 		# Optional dbf columns
 		for att in valid_atts:
 			if not(str(att['id']) in ids):
 				labels.append(str(att['name']))
 				ids.append(str(att['id']))
-				pr.addAttributes([QgsField(str(att['name'])+'-[OPT]-00', QVariant.String)])
+				pr.addAttributes([QgsField(str(att['name'])+'#-[OPT]-00', QVariant.String)])
 	
 		# Commit changes
 		ly.commitChanges()
@@ -407,7 +409,7 @@ class rasor:
 					progressMessageBar.layout().addWidget(progress)
 					self.iface.messageBar().pushWidget(progressMessageBar, self.iface.messageBar().INFO)	
 					## Do the work					
-					file_tmp=rapi.translate_file(self.iface, progress, file, eatt, eval, tempfile.gettempdir())
+					file_tmp=rapi.translate_file(self.iface, progress, file, idcatexp, eatt, eval, tempfile.gettempdir())
 					err=rapi.upload_file(self.iface, progress, file, file_tmp, idcatexp, user, pwd)
 					if err == 0:
 						self.iface.messageBar().pushMessage("Upload layer", "Congratulations, files were uploaded", level=QgsMessageBar.INFO, duration=3)
