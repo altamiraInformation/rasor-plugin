@@ -1,6 +1,6 @@
 {
 	"meta": {
-		"total_count": 125,
+		"total_count": 136,
 		"limit": 0,
 		"offset": 0
 	},
@@ -10,13 +10,6 @@
 		"id": 31,
 		"descr": "intersection_with_river_network",
 		"name": "river_int"
-	},
-	{
-		"category": 8,
-		"long_name": "growing_cycle",
-		"id": 32,
-		"descr": "growing_cycle",
-		"name": "grow_cycle"
 	},
 	{
 		"category": 1,
@@ -41,31 +34,10 @@
 	},
 	{
 		"category": 1,
-		"long_name": "basement_presence",
-		"id": 4,
-		"descr": "basement_presence",
-		"name": "basement"
-	},
-	{
-		"category": 1,
 		"long_name": "ground_floor_elevation",
 		"id": 5,
 		"descr": "ground_floor_elevation",
 		"name": "gr_fl_elev"
-	},
-	{
-		"category": 1,
-		"long_name": "number_of_stories",
-		"id": 6,
-		"descr": "number_of_stories",
-		"name": "no_stories"
-	},
-	{
-		"category": 1,
-		"long_name": "structural_system_type_&_predominant_material",
-		"id": 11,
-		"descr": "structural_system_type_&_predominant_material",
-		"name": "struct_typ"
 	},
 	{
 		"category": 1,
@@ -122,13 +94,6 @@
 		"id": 91,
 		"descr": "%of_people_in_school_age",
 		"name": "%sch_age"
-	},
-	{
-		"category": 1,
-		"long_name": "%_of_people_belonging_to_ethnic_moniroties_in_the_building",
-		"id": 81,
-		"descr": "%_of_people_belonging_to_ethnic_moniroties_in_the_building",
-		"name": "%eth_min"
 	},
 	{
 		"category": 1,
@@ -215,20 +180,6 @@
 		"name": "IUCN_class"
 	},
 	{
-		"category": 8,
-		"long_name": "land_type",
-		"id": 34,
-		"descr": "land_type",
-		"name": "land_type"
-	},
-	{
-		"category": 1,
-		"long_name": "roof_material",
-		"id": 9,
-		"descr": "roof_material",
-		"name": "roof_mat"
-	},
-	{
 		"category": 5,
 		"long_name": "name",
 		"id": 76,
@@ -283,13 +234,6 @@
 		"id": 18,
 		"descr": "number_of_lanes",
 		"name": "no_lanes"
-	},
-	{
-		"category": 8,
-		"long_name": "growing_season",
-		"id": 33,
-		"descr": "growing_season",
-		"name": "grow_sea"
 	},
 	{
 		"category": 7,
@@ -467,13 +411,6 @@
 		"name": "no_people"
 	},
 	{
-		"category": 8,
-		"long_name": "economic_income_per_hectar",
-		"id": 55,
-		"descr": "economic_income_per_hectar",
-		"name": "ha_income"
-	},
-	{
 		"category": 6,
 		"long_name": "average_number_of_years_of_schooling",
 		"id": 120,
@@ -558,6 +495,41 @@
 		"name": "replacem$"
 	},
 	{
+		"category": 8,
+		"long_name": "cost",
+		"id": 33,
+		"descr": "cost",
+		"name": "cost"
+	},
+	{
+		"category": 1,
+		"long_name": "roof_coverage",
+		"id": 9,
+		"descr": "roof_coverage",
+		"name": "roof_cov"
+	},
+	{
+		"category": 1,
+		"long_name": "roof_connections",
+		"id": 184,
+		"descr": "roof_connections",
+		"name": "roof_conn"
+	},
+	{
+		"category": 1,
+		"long_name": "number_of_storeys_below_ground",
+		"id": 4,
+		"descr": "number_of_storeys_below_ground",
+		"name": "no_sto_blw"
+	},
+	{
+		"category": 8,
+		"long_name": "production",
+		"id": 32,
+		"descr": "production",
+		"name": "prod"
+	},
+	{
 		"category": 10,
 		"long_name": "%_of_people_belonging_to_ethnic_minorities",
 		"id": 39,
@@ -598,13 +570,6 @@
 		"id": 100,
 		"descr": "percentage_younger_than_5_years",
 		"name": "%lt_5_yr"
-	},
-	{
-		"category": 1,
-		"long_name": "mean_number_of_componente_per_family_in_the_building",
-		"id": 88,
-		"descr": "mean_number_of_componente_per_family_in_the_building",
-		"name": "n_fam_com"
 	},
 	{
 		"category": 1,
@@ -878,5 +843,117 @@
 		"id": 135,
 		"descr": "percentage_people_in_school_age",
 		"name": "%sch_age"
+	},
+	{
+		"category": 1,
+		"long_name": "mean_number_of_component_per_family_in_the_building",
+		"id": 88,
+		"descr": "mean_number_of_component_per_family_in_the_building",
+		"name": "n_fam_com"
+	},
+	{
+		"category": 1,
+		"long_name": "effective area of building or block with respect to foot print (%)\n",
+		"id": 176,
+		"descr": "effective area of building or block with respect to foot print (%)\n",
+		"name": "%-built-up"
+	},
+	{
+		"category": 1,
+		"long_name": "%_of_people_belonging_to_ethnic_minorities_in_the_building",
+		"id": 81,
+		"descr": "%_of_people_belonging_to_ethnic_minorities_in_the_building",
+		"name": "%eth_min"
+	},
+	{
+		"category": 1,
+		"long_name": "lateral_load_resisting_system_type",
+		"id": 178,
+		"descr": "lateral_load_resisting_system_type",
+		"name": "llrs_type"
+	},
+	{
+		"category": 1,
+		"long_name": "number_of_storeys_above_ground",
+		"id": 6,
+		"descr": "number_of_storeys_above_ground",
+		"name": "no_st_abv"
+	},
+	{
+		"category": 1,
+		"long_name": "slope_of_the_ground",
+		"id": 179,
+		"descr": "slope_of_the_ground",
+		"name": "slope"
+	},
+	{
+		"category": 1,
+		"long_name": "building_position_within_a_block",
+		"id": 180,
+		"descr": "building_position_within_a_block",
+		"name": "build_pos"
+	},
+	{
+		"category": 1,
+		"long_name": "shape_of_the_building_footprint",
+		"id": 181,
+		"descr": "shape_of_the_building_footprint",
+		"name": "footprint "
+	},
+	{
+		"category": 1,
+		"long_name": "exterior_walls_coverage_material",
+		"id": 182,
+		"descr": "exterior_walls_coverage_material",
+		"name": "ext_cover"
+	},
+	{
+		"category": 1,
+		"long_name": "roof_system_material",
+		"id": 183,
+		"descr": "roof_system_material",
+		"name": "roof_syst"
+	},
+	{
+		"category": 1,
+		"long_name": "floor_system_material",
+		"id": 185,
+		"descr": "floor_system_material",
+		"name": "floor_sys"
+	},
+	{
+		"category": 1,
+		"long_name": "floor_connections",
+		"id": 186,
+		"descr": "floor_connections",
+		"name": "floor_conn"
+	},
+	{
+		"category": 1,
+		"long_name": "plan_irregularity",
+		"id": 187,
+		"descr": "plan_irregularity",
+		"name": "plan_irr"
+	},
+	{
+		"category": 1,
+		"long_name": "vertical_irregularity",
+		"id": 188,
+		"descr": "vertical_irregularity",
+		"name": "vert_irr"
+	},
+	{
+		"category": 1,
+		"long_name": "basement_replacement_cost_per_m2",
+		"id": 189,
+		"descr": "basement_replacement_cost_per_m2",
+		"name": "bas$_m2"
+	},
+	{
+		"category": 1,
+		"long_name": "lateral_load_resisting_system_material",
+		"id": 177,
+		"descr": "lateral_load_resisting_system_material",
+		"name": "llrs_mat"
 	}]
 }

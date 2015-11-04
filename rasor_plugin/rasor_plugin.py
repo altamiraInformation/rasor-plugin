@@ -37,7 +37,8 @@ import resources_rc
 
 # Import the code for the dialog
 from rasor_plugin_dialog import rasorDialog
-import os.path, json, tempfile
+from rasor_plugin_down_dialog import rasorDownDialog
+import os.path, json, tempfile, sys
 from os.path import expanduser
 
 # Global variables
@@ -47,8 +48,9 @@ haz=""
 ecat=""
 eatt=""
 imp=""
-eval=""
+evaluation=""
 haz_cat=""
+rlayers=""
 first=1
 rapi = rasor_api()
 
@@ -63,7 +65,7 @@ class rasor:
             application at run time.
         :type iface: QgsInterface
         """
-	global haz, ecat, imp, eatt, eval, rapi, first, user, pwd, haz_cat
+	global haz, ecat, imp, eatt, evaluation, rapi, first, user, pwd, haz_cat, rlayers
 	
         # Save reference to the QGIS interface
         self.iface = iface
@@ -83,7 +85,8 @@ class rasor:
 
         # Create the dialog (after translation) and keep reference
         self.dlg = rasorDialog()
-		
+        self.dlg_down = rasorDownDialog()
+
         # Declare instance attributes
         self.actions = []
         self.menu = self.tr(u'&Rasor Plugin')
@@ -94,24 +97,27 @@ class rasor:
 
 	# Get RASOR info
 	if first:
-		print 'LOADING ...'
-		
-		# Saved impacts/hazards/exposures/attributes/values
-		imp=rapi.download_json(self.cache_dir+'/impact_types.json','/db/impact/types')
-		haz=rapi.download_json(self.cache_dir+'/hazard_types.json','/db/hazard/hazards')
-		ecat=rapi.download_json(self.cache_dir+'/exposure_categories.json','/db/exposure/categories')
-		eatt=rapi.download_json(self.cache_dir+'/exposure_attributes.json','/db/exposure/attributes')
-		eval=rapi.download_json(self.cache_dir+'/exposure_values.json','/db/exposure/valuesdecode')
-		
-		# Saved hazard evaluations
-		haz_cat={}
-		for elem in ecat['objects']:
-			haz_cat[str(elem['id'])]=rapi.download_json(self.cache_dir+'/haz_cat'+str(elem['id'])+'.json','/db/hazard/hazardsattributes/?category='+str(elem['id']))
-			
 		# Saved user preferences
 		user=rapi.load_file(self.cache_dir+'/infoU')
 		pwd=rapi.load_file(self.cache_dir+'/infoP')
+		server=rapi.load_file(self.cache_dir+'/server')
+		rapi.set_server(server)
 		first=0
+
+		# Saved impacts/hazards/exposures/attributes/values
+		imp=rapi.download_json(self.cache_dir+'/impact_types.json','/rasorapi/db/impact/types', False)
+		haz=rapi.download_json(self.cache_dir+'/hazard_types.json','/rasorapi/db/hazard/hazards', False)
+		ecat=rapi.download_json(self.cache_dir+'/exposure_categories.json','/rasorapi/db/exposure/categories', False)
+		eatt=rapi.download_json(self.cache_dir+'/exposure_attributes.json','/rasorapi/db/exposure/attributes', False)
+		evaluation=rapi.download_json(self.cache_dir+'/exposure_values.json','/rasorapi/db/exposure/valuesdecode', False)
+				
+		# Saved hazard evaluations
+		haz_cat={}
+		for elem in ecat['objects']:
+			haz_cat[str(elem['id'])]=rapi.download_json(self.cache_dir+'/haz_cat'+str(elem['id'])+'.json','/rasorapi/db/hazard/hazardsattributes/?category='+str(elem['id']), False)
+		
+		# Rasor layers
+		rlayers=rapi.download_json(self.cache_dir+'/rasor_layers.json','/api/layers', True)
 	
     # noinspection PyMethodMayBeStatic
     def tr(self, message):
@@ -209,29 +215,22 @@ class rasor:
 		"""Create new exposure layer"""        	
 		self.add_action(
 			icon_new_path,
-			text=self.tr(u'new Rasor exposure layer'),
+			text=self.tr(u'new RASOR exposure layer'),
 			callback=self.run,
 			parent=self.iface.mainWindow())
 
 		"""Upload layer to RASOR-API"""        	    
 		self.add_action(
 			icon_up_path,
-			text=self.tr(u'upload Rasor layer'),
+			text=self.tr(u'upload RASOR layer'),
 			callback=self.run_upload,
 			parent=self.iface.mainWindow())
 
-		"""Import buildings exposure layer from OSM"""        		    
-		self.add_action(
-			icon_build_path,
-			text=self.tr(u'import buildings layer from OSM'),
-			callback=self.run_buildings,
-			parent=self.iface.mainWindow())
-
-		"""Upload layer to RASOR-API"""        		    
+		"""Download layer from RASOR-API"""        		    
 		self.add_action(
 			icon_roads_path,
-			text=self.tr(u'import roads layer from OSM'),
-			callback=self.run_roads,
+			text=self.tr(u'download RASOR layer'),
+			callback=self.run_download,
 			parent=self.iface.mainWindow())
 
     def unload(self):
@@ -243,7 +242,7 @@ class rasor:
             self.iface.removeToolBarIcon(action)
 
     def run(self):
-	global haz, ecat, eatt, eval, imp, haz_cat
+	global haz, ecat, eatt, evaluation, imp, haz_cat
 	"""Create a new RASOR exposure layer"""
 
 	# Categories single selection
@@ -284,7 +283,7 @@ class rasor:
 		# Exposure selection (single)
 		selExp=str(self.dlg.exposureBox.currentText())	
 		idExp=rapi.search_id(ecat, 'name', selExp)
-		evaluation=haz_cat[str(idExp)]
+		evalu=haz_cat[str(idExp)]
 		if selExp == 'lifelines' or 'network' in selExp: 
 			geom='Line'
 		else:
@@ -302,7 +301,7 @@ class rasor:
 		selAttr=dict()
 		for hs in selHaz:
 			idhaz=rapi.search_id(haz, 'name', hs.text())
-			exphaz=rapi.search_object(evaluation,'id',idhaz)		
+			exphaz=rapi.search_object(evalu,'id',idhaz)		
 			for attrib in exphaz['attributes']:
 				# Filter by impact type
 				if attrib['impact_type'] in selImpInd:
@@ -345,7 +344,7 @@ class rasor:
 		ind=0
 		for id in ids:
 			# Search for possible atts
-			arr=rapi.search_attributes(eval, int(id))
+			arr=rapi.search_attributes(evaluation, int(id))
 			vals=dict()
 			for att in arr:
 				name=str(att['name'])
@@ -399,7 +398,7 @@ class rasor:
 					return ## Quit
 					
 				# Translate & Upload				
-				for file in dlgU.selectedFiles():					
+				for f in dlgU.selectedFiles():					
 					## Setup progressBar	
 					self.iface.messageBar().clearWidgets()					
 					progressMessageBar = self.iface.messageBar().createMessage("Uploading into the RASOR platform ...")
@@ -409,9 +408,11 @@ class rasor:
 					progressMessageBar.layout().addWidget(progress)
 					self.iface.messageBar().pushWidget(progressMessageBar, self.iface.messageBar().INFO)	
 					## Do the work					
-					file_tmp=rapi.translate_file(self.iface, progress, file, idcatexp, eatt, eval, tempfile.gettempdir())
-					err=rapi.upload_file(self.iface, progress, file, file_tmp, idcatexp, user, pwd)
+					file_tmp=rapi.translate_file(self.iface, progress, f, idcatexp, eatt, evaluation, tempfile.gettempdir())
+					err=rapi.upload_file(self.iface, progress, f, file_tmp, idcatexp, user, pwd)
 					if err == 0:
+						# Finish
+						self.iface.messageBar().clearWidgets()
 						self.iface.messageBar().pushMessage("Upload layer", "Congratulations, files were uploaded", level=QgsMessageBar.INFO, duration=3)
 
     def get_username(self):
@@ -435,9 +436,85 @@ class rasor:
 		if pwdD.exec_():
 			return pwdD.textValue()
 		return ""
+
+    def run_download_safe(self):
+		global rapi, ecat, user, pwd
+		"""Upload a RASOR exposure layer"""	
+		## File selection
+		dlgU=QFileDialog()
+		dlgU.setWindowTitle('Select files to upload')
+		dlgU.setViewMode(QFileDialog.Detail)
+		dlgU.setNameFilters([self.tr('Shapefile (*.shp)')])
+		dlgU.setDirectory(expanduser("~"))
+		dlgU.setDefaultSuffix('.shp')
+		if dlgU.exec_():				
+				# Translate				
+				for f in dlgU.selectedFiles():					
+					## Setup progressBar	
+					self.iface.messageBar().clearWidgets()					
+					progressMessageBar = self.iface.messageBar().createMessage("Uploading into the RASOR platform ...")
+					progress = QProgressBar()
+					progress.setMaximum(10)
+					progress.setAlignment(Qt.AlignLeft|Qt.AlignVCenter)
+					progressMessageBar.layout().addWidget(progress)
+					self.iface.messageBar().pushWidget(progressMessageBar, self.iface.messageBar().INFO)	
+					## Do the work					
+					file_tmp=rapi.inverse_translate_file(self.iface, progress, f, eatt, tempfile.gettempdir())
 		
-    def run_buildings(self):
-		self.iface.messageBar().pushMessage("Buildings from OSM", "Feature not implemented yet, wait for future versions", level=QgsMessageBar.INFO, duration=3)
-	
-    def run_roads(self):
-		self.iface.messageBar().pushMessage("Roads from OSM", "Feature not implemented yet, wait for future versions", level=QgsMessageBar.INFO, duration=3)
+    def run_download(self):
+		global rapi, rlayers, eatt
+
+		# Load RASOR layers to table
+		self.dlg_down.tableWidget.clear()
+		self.dlg_down.tableWidget.setHorizontalHeaderItem(0, QTableWidgetItem("RASOR layer name"))
+		self.dlg_down.tableWidget.setHorizontalHeaderItem(0, QTableWidgetItem("Owner username"))
+		self.dlg_down.tableWidget.setRowCount(len(rlayers['objects']))
+		lrow=0
+
+		for rlay in rlayers['objects']:
+			self.dlg_down.tableWidget.setItem(lrow,0,QTableWidgetItem(str(rlay["title"])))
+			self.dlg_down.tableWidget.setItem(lrow,1,QTableWidgetItem(str(rlay["owner__username"])))
+			lrow+=1
+
+		# Resize table
+		self.dlg_down.tableWidget.resizeColumnsToContents()
+
+		# Show interface
+		self.dlg_down.show()
+		
+		# Run the dialog event loop
+		result = self.dlg_down.exec_()
+		itemS = self.dlg_down.tableWidget.currentItem()
+		
+		# Selection + OK
+		if result and itemS:
+			# Get selected layer
+			selrow = itemS.row()
+			layerDown = self.dlg_down.tableWidget.item(selrow,0).text()
+			self.dlg_down.destroy()
+
+			## Setup progressBar	
+			self.iface.messageBar().clearWidgets()					
+			progressMessageBar = self.iface.messageBar().createMessage("Downloading from the RASOR platform ...")
+			progress = QProgressBar()
+			progress.setMaximum(10)
+			progress.setAlignment(Qt.AlignLeft|Qt.AlignVCenter)
+			progressMessageBar.layout().addWidget(progress)
+			self.iface.messageBar().pushWidget(progressMessageBar, self.iface.messageBar().INFO)			
+
+			# Download
+			tempDir=tempfile.gettempdir()
+			zipF=rapi.download_file_WFS(progress, layerDown, tempDir)
+			if zipF == -1 or os.stat(zipF).st_size != 0:
+				shpfile=rapi.unzip_file(progress, zipF, tempDir)
+				if shpfile == -1:
+					self.iface.messageBar().pushMessage("Download layer", "ERROR, the downloaded file is not a valid ZIP", level=QgsMessageBar.CRITICAL, duration=5)
+				else:
+					# Translate file
+					file_tmp=rapi.inverse_translate_file(self.iface, progress, tempDir+'/'+shpfile, eatt, tempfile.gettempdir())
+					layer = self.iface.addVectorLayer(file_tmp, layerDown, "ogr")
+					# Finish
+					self.iface.messageBar().clearWidgets()
+					self.iface.messageBar().pushMessage("Download layer", "Congratulations, files were downloaded", level=QgsMessageBar.INFO, duration=3)
+			else:
+				self.iface.messageBar().pushMessage("Download layer", "ERROR, trying to connect to RASOR platform", level=QgsMessageBar.ERCRITICALROR, duration=5)
