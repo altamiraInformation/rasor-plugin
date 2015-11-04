@@ -436,30 +436,6 @@ class rasor:
 		if pwdD.exec_():
 			return pwdD.textValue()
 		return ""
-
-    def run_download_safe(self):
-		global rapi, ecat, user, pwd
-		"""Upload a RASOR exposure layer"""	
-		## File selection
-		dlgU=QFileDialog()
-		dlgU.setWindowTitle('Select files to upload')
-		dlgU.setViewMode(QFileDialog.Detail)
-		dlgU.setNameFilters([self.tr('Shapefile (*.shp)')])
-		dlgU.setDirectory(expanduser("~"))
-		dlgU.setDefaultSuffix('.shp')
-		if dlgU.exec_():				
-				# Translate				
-				for f in dlgU.selectedFiles():					
-					## Setup progressBar	
-					self.iface.messageBar().clearWidgets()					
-					progressMessageBar = self.iface.messageBar().createMessage("Uploading into the RASOR platform ...")
-					progress = QProgressBar()
-					progress.setMaximum(10)
-					progress.setAlignment(Qt.AlignLeft|Qt.AlignVCenter)
-					progressMessageBar.layout().addWidget(progress)
-					self.iface.messageBar().pushWidget(progressMessageBar, self.iface.messageBar().INFO)	
-					## Do the work					
-					file_tmp=rapi.inverse_translate_file(self.iface, progress, f, eatt, tempfile.gettempdir())
 		
     def run_download(self):
 		global rapi, rlayers, eatt
