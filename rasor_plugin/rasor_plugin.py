@@ -460,13 +460,13 @@ class rasor:
 		# Load RASOR layers to table
 		self.dlg_down.tableWidget.clear()
 		self.dlg_down.tableWidget.setHorizontalHeaderItem(0, QTableWidgetItem("RASOR layer name"))
-		self.dlg_down.tableWidget.setHorizontalHeaderItem(1, QTableWidgetItem("Owner username"))
+		self.dlg_down.tableWidget.setHorizontalHeaderItem(1, QTableWidgetItem("Category"))
 		self.dlg_down.tableWidget.setRowCount(len(rlayers['objects']))
 		lrow=0
 
 		for rlay in rlayers['objects']:
 			self.dlg_down.tableWidget.setItem(lrow,0,QTableWidgetItem(str(rlay["title"])))
-			self.dlg_down.tableWidget.setItem(lrow,1,QTableWidgetItem(str(rlay["owner__username"])))
+			self.dlg_down.tableWidget.setItem(lrow,1,QTableWidgetItem(str(rlay["category__gn_description"])))
 			lrow+=1
 
 		# Resize table

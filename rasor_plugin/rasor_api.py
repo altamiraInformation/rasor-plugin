@@ -91,9 +91,11 @@ class rasor_api:
 			outFeature = ogr.Feature(outLayerDefn)
 			# Add field values from input Layer
 			for i in range(0, outLayerDefn.GetFieldCount()):
-				idval = inFeature.GetField((i*2)+1) # _rd_YY
-				if idval != None: 	outFeature.SetField(outLayerDefn.GetFieldDefn(i).GetNameRef(), str(idval))
-				#else:				outFeature.SetField(outLayerDefn.GetFieldDefn(i).GetNameRef(), idval)
+				try:
+					idval = inFeature.GetField((i*2)+1) # _rd_YY
+					if idval != None: 	outFeature.SetField(outLayerDefn.GetFieldDefn(i).GetNameRef(), str(idval))
+				except ValueError:
+					continue
 			# Add geometry
 			geom = inFeature.GetGeometryRef()		
 			outFeature.SetGeometry(geom)
