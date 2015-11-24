@@ -115,9 +115,6 @@ class rasor:
 		haz_cat={}
 		for elem in ecat['objects']:
 			haz_cat[str(elem['id'])]=rapi.download_json(self.cache_dir+'/haz_cat'+str(elem['id'])+'.json','/rasorapi/db/hazard/hazardsattributes/?category='+str(elem['id']), False)
-		
-		# Rasor layers
-		rlayers=rapi.download_json(self.cache_dir+'/rasor_layers.json','/api/layers', True)
 	
     # noinspection PyMethodMayBeStatic
     def tr(self, message):
@@ -361,9 +358,19 @@ class rasor:
 		QgsMapLayerRegistry.instance().addMapLayer(ly)
 			
     def run_upload(self):
-		global rapi, ecat, user, pwd
+		global rapi, ecat, eatt, user, pwd
 		"""Upload a RASOR exposure layer"""	
-		## File selection
+		# Check connection
+		online=rapi.check_connection()
+		if online==True:
+			print 'ONLINE: Downloading exposure attributes from RASOR platform'
+			ecat=rapi.download_json(self.cache_dir+'/exposure_categories.json','/rasorapi/db/exposure/categories', False)
+			eatt=rapi.download_json(self.cache_dir+'/exposure_attributes.json','/rasorapi/db/exposure/attributes', False)
+		else:
+			self.iface.messageBar().pushMessage("Upload layer", "Unable to connect to RASOR platform, you have to be online to upload a layer", level=QgsMessageBar.CRITICAL, duration=5)
+			return
+
+		# File selection
 		dlgU=QFileDialog()
 		dlgU.setWindowTitle('Select files to upload')
 		dlgU.setViewMode(QFileDialog.Detail)
@@ -371,7 +378,7 @@ class rasor:
 		dlgU.setDirectory(expanduser("~"))
 		dlgU.setDefaultSuffix('.shp')
 		if dlgU.exec_():
-			## Exposure layer selection
+			# Exposure layer selection
 			dlgE=QInputDialog()			
 			exp=()
 			for elem in ecat['objects']:
@@ -399,7 +406,7 @@ class rasor:
 					
 				# Translate & Upload				
 				for f in dlgU.selectedFiles():					
-					## Setup progressBar	
+					# Setup progressBar	
 					self.iface.messageBar().clearWidgets()					
 					progressMessageBar = self.iface.messageBar().createMessage("Uploading into the RASOR platform ...")
 					progress = QProgressBar()
@@ -407,7 +414,7 @@ class rasor:
 					progress.setAlignment(Qt.AlignLeft|Qt.AlignVCenter)
 					progressMessageBar.layout().addWidget(progress)
 					self.iface.messageBar().pushWidget(progressMessageBar, self.iface.messageBar().INFO)	
-					## Do the work					
+					# Do the work					
 					file_tmp=rapi.translate_file(self.iface, progress, f, idcatexp, eatt, evaluation, tempfile.gettempdir())
 					err=rapi.upload_file(self.iface, progress, f, file_tmp, idcatexp, user, pwd)
 					if err == 0:
@@ -438,12 +445,22 @@ class rasor:
 		return ""
 		
     def run_download(self):
-		global rapi, rlayers, eatt
+		global rapi, rlayers, ecat, eatt
+		# Check connection
+		online=rapi.check_connection()
+		if online==True:
+			print 'ONLINE: Downloading layers from RASOR platform'
+			rlayers=rapi.download_json(self.cache_dir+'/rasor_layers.json','/api/layers', True)
+			ecat=rapi.download_json(self.cache_dir+'/exposure_categories.json','/rasorapi/db/exposure/categories', False)
+			eatt=rapi.download_json(self.cache_dir+'/exposure_attributes.json','/rasorapi/db/exposure/attributes', False)
+		else:
+			self.iface.messageBar().pushMessage("Download layer", "Unable to connect to RASOR platform, you have to be online to download a layer", level=QgsMessageBar.CRITICAL, duration=5)
+			return
 
 		# Load RASOR layers to table
 		self.dlg_down.tableWidget.clear()
 		self.dlg_down.tableWidget.setHorizontalHeaderItem(0, QTableWidgetItem("RASOR layer name"))
-		self.dlg_down.tableWidget.setHorizontalHeaderItem(0, QTableWidgetItem("Owner username"))
+		self.dlg_down.tableWidget.setHorizontalHeaderItem(1, QTableWidgetItem("Owner username"))
 		self.dlg_down.tableWidget.setRowCount(len(rlayers['objects']))
 		lrow=0
 
@@ -493,4 +510,4 @@ class rasor:
 					self.iface.messageBar().clearWidgets()
 					self.iface.messageBar().pushMessage("Download layer", "Congratulations, files were downloaded", level=QgsMessageBar.INFO, duration=3)
 			else:
-				self.iface.messageBar().pushMessage("Download layer", "ERROR, trying to connect to RASOR platform", level=QgsMessageBar.ERCRITICALROR, duration=5)
+				self.iface.messageBar().pushMessage("Download layer", "ERROR, trying to connect to RASOR platform", level=QgsMessageBar.CRITICAL, duration=5)

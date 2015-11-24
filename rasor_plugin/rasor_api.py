@@ -1,8 +1,16 @@
-import urllib, httplib2, json, os, requests, ogr, socket, sys, zipfile
+import urllib, urllib2, httplib2, json, os, requests, ogr, socket, sys, zipfile
 from qgis.gui import QgsMessageBar
 from osgeo import gdal
 
 class rasor_api:
+	#### Internet available
+	def check_connection(self):
+		try:
+			response=urllib2.urlopen(self.rasor_api, timeout=1)
+			return True
+		except urllib2.URLError as err: pass
+		return False
+
 	#### Download a file
 	def download_file_WFS(self, progress, layerName, tempDir):
 		try:
@@ -69,13 +77,13 @@ class rasor_api:
 				parts=rcid.split('_') # _rc_XX
 				id_name = parts[2]	
 				obj=self.search_object(eatt, 'id', int(id_name))				
-				if obj['name']:
+				if not obj:
+					print "ERR: "+id_name+" not found."
+				else:					
 					# Add a new field
 					new_field1 = ogr.FieldDefn(str(obj['name']), ogr.OFTString)
-					outLayer.CreateField(new_field1)				
-				else:
-					print "ERR: "+id_name+" not found."
-				
+					outLayer.CreateField(new_field1)					
+
 		## Add features to the ouput Layer
 		outLayerDefn = outLayer.GetLayerDefn()
 		for f in range(0, inLayer.GetFeatureCount()):
@@ -84,7 +92,8 @@ class rasor_api:
 			# Add field values from input Layer
 			for i in range(0, outLayerDefn.GetFieldCount()):
 				idval = inFeature.GetField((i*2)+1) # _rd_YY
-				outFeature.SetField(outLayerDefn.GetFieldDefn(i).GetNameRef(), str(idval))
+				if idval != None: 	outFeature.SetField(outLayerDefn.GetFieldDefn(i).GetNameRef(), str(idval))
+				#else:				outFeature.SetField(outLayerDefn.GetFieldDefn(i).GetNameRef(), idval)
 			# Add geometry
 			geom = inFeature.GetGeometryRef()		
 			outFeature.SetGeometry(geom)
@@ -123,9 +132,8 @@ class rasor_api:
 				parts=field_name.split('#') # OPT/MAN tooltip
 				field_name = parts[0]				
 			
-			obj=self.search_object_dual(eatt, 'name', field_name, 'category', idcatexp)
-			
-			if obj != '':
+			obj=self.search_object_dual(eatt, 'name', field_name, 'category', idcatexp)			
+			if obj:
 				print "OK: Found VAL=%s with ID=%s" % (obj['name'], obj['id'])
 				# Add a new field
 				new_field1 = ogr.FieldDefn('_rc_'+str(obj['id']), ogr.OFTString)
