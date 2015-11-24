@@ -1,14 +1,15 @@
-import urllib, urllib2, httplib2, json, os, requests, ogr, socket, sys, zipfile
+import urllib, urllib2, httplib2, json, os, requests, ogr, socket, sys, zipfile, base64
 from qgis.gui import QgsMessageBar
 from osgeo import gdal
+from urllib2 import HTTPError
 
 class rasor_api:
-	#### Internet available
+	#### Internet available (2 seconds timeout)
 	def check_connection(self):
 		try:
-			response=urllib2.urlopen(self.rasor_api, timeout=1)
+			response=urllib2.urlopen(self.rasor_api, timeout=2)
 			return True
-		except urllib2.URLError as err: pass
+		except: pass
 		return False
 
 	#### Download a file
@@ -18,7 +19,7 @@ class rasor_api:
 			socket.setdefaulttimeout(10)
 			url=self.rasor_api+'/geoserver/wfs?format_options=charset%3AUTF-8&typename=geonode%3A'+layerName+'&outputFormat=SHAPE-ZIP&version=1.0.0&service=WFS&request=GetFeature'
 			print url
-			response = urllib.urlopen(self.rasor_api+'/geoserver/wfs?format_options=charset%3AUTF-8&typename=geonode%3A'+layerName+'&outputFormat=SHAPE-ZIP&version=1.0.0&service=WFS&request=GetFeature')
+			response = urllib.urlopen(url)
 			fname=tempDir+'/'+layerName+'.zip'
 			print fname
 			with open(fname, 'wb') as f:
@@ -31,6 +32,39 @@ class rasor_api:
 		except:
 			progress.setValue(0)
 			return -1 # ERROR timeout
+
+	#### Download a raster
+	def download_raster(self, iface, progress, layerName, tempDir, user, passwd):
+		try:
+			progress.setValue(7)
+			socket.setdefaulttimeout(7200) # 2hours
+			# Build URL + access
+			url=self.rasor_api+'/geonode-rasters/'+layerName+'/'+layerName+'.geotiff'
+			print url
+			request=urllib2.Request(url)
+			base64string = base64.encodestring('%s:%s' % (user, passwd)).replace('\n', '')
+			request.add_header("Authorization", "Basic %s" % base64string) 
+			response=urllib2.urlopen(request)
+			fname=tempDir+'/'+layerName+'.geotiff'
+			print fname
+			# Read response in blocks
+			with open(fname, 'wb') as f:
+			   while True:
+			      chunk = response.read(1024)
+			      if not chunk: break
+			      f.write(chunk)
+			f.close()
+			return fname
+		except ValueError:
+			progress.setValue(0)
+			iface.messageBar().clearWidgets()
+			iface.messageBar().pushMessage("Download layer", "There is something wrong with the attributes on this layer", level=QgsMessageBar.CRITICAL, duration=5)
+			return -1 # ERROR timeout
+		except HTTPError:
+			progress.setValue(0)
+			iface.messageBar().clearWidgets()
+			iface.messageBar().pushMessage("Download layer", "You are not authorized to download this layer", level=QgsMessageBar.CRITICAL, duration=5)
+			return -1 # ERROR Authentication
 
 	#### Unzip file
 	def unzip_file(self, progress, zipName, tempDir):
@@ -212,12 +246,12 @@ class rasor_api:
 			iface.messageBar().clearWidgets()
 			if uploadResponse.status_code != 200: 
 				## Upload Failed				
-				iface.messageBar().pushMessage("Upload layer", "There was an error uploading the files: " + uploadResponse.reason, level=QgsMessageBar.CRITICAL, duration=5)
+				iface.messageBar().pushMessage("Upload layer", "There was an error uploading the layer", level=QgsMessageBar.CRITICAL, duration=5)
 				return -1
 		else:
 			## Login failed
 			iface.messageBar().clearWidgets()
-			iface.messageBar().pushMessage("Upload layer", "There was an error in the authentication process:" + loginResponse.reason, level=QgsMessageBar.CRITICAL, duration=5)	
+			iface.messageBar().pushMessage("Upload layer", "You are not authorized to upload this layer" + loginResponse.reason, level=QgsMessageBar.CRITICAL, duration=5)	
 			return -1
 			
 		return 0 ## ok

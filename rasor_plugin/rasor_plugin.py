@@ -44,6 +44,8 @@ from os.path import expanduser
 # Global variables
 user=""
 pwd=""
+user_down=""
+pass_down=""
 haz=""
 ecat=""
 eatt=""
@@ -100,6 +102,8 @@ class rasor:
 		# Saved user preferences
 		user=rapi.load_file(self.cache_dir+'/infoU')
 		pwd=rapi.load_file(self.cache_dir+'/infoP')
+		user_down=rapi.load_file(self.cache_dir+'/infoU_down')
+		pass_down=rapi.load_file(self.cache_dir+'/infoP_down')		
 		server=rapi.load_file(self.cache_dir+'/server')
 		rapi.set_server(server)
 		first=0
@@ -391,14 +395,14 @@ class rasor:
 			if dlgE.exec_():
 				idcatexp=rapi.search_id(ecat, 'name', dlgE.textValue())
 				# User input
-				user=self.get_username()
+				user=self.get_username(False)
 				if user != "":
 					rapi.save_file(self.cache_dir+'/infoU', user)
 				else:
 					return ## Quit
 				
 				# Password input
-				pwd=self.get_password()
+				pwd=self.get_password(False)
 				if pwd != "":				
 					rapi.save_file(self.cache_dir+'/infoP', pwd)
 				else:
@@ -422,30 +426,41 @@ class rasor:
 						self.iface.messageBar().clearWidgets()
 						self.iface.messageBar().pushMessage("Upload layer", "Congratulations, files were uploaded", level=QgsMessageBar.INFO, duration=3)
 
-    def get_username(self):
-		global user
-		userD=QInputDialog()
-		userD.setWindowTitle('RASOR auth')
-		userD.setLabelText('Username:')
-		userD.setTextValue(user)
+    def get_username(self, down):
+		global user, user_down
+		userD=QInputDialog()		
+		if down == True:
+			userD.setLabelText('Username (download):')	
+			userD.setWindowTitle('RASOR [DOWN]:')
+			userD.setTextValue(user_down)
+		else:
+			userD.setLabelText('Username (upload):')		
+			userD.setWindowTitle('RASOR [UP]:')
+			userD.setTextValue(user)			
 		userD.setTextEchoMode(QLineEdit.Normal)
 		if userD.exec_():
 			return userD.textValue()
 		return ""
 	
-    def get_password(self):
-		global pwd
-		pwdD=QInputDialog()
-		pwdD.setWindowTitle('RASOR auth')
-		pwdD.setLabelText('Password:')
-		pwdD.setTextValue(pwd)
+    def get_password(self, down):
+		global pwd, pass_down
+		pwdD=QInputDialog()				
+		if down == True:	
+			pwdD.setLabelText('Password (download):')
+			pwdD.setWindowTitle('RASOR [DOWN]:')
+			pwdD.setTextValue(pass_down)
+		else:			
+			pwdD.setLabelText('Password (upload):')
+			pwdD.setWindowTitle('RASOR [UP]:')
+			pwdD.setTextValue(pwd)			
 		pwdD.setTextEchoMode(QLineEdit.Password)
 		if pwdD.exec_():
 			return pwdD.textValue()
 		return ""
 		
     def run_download(self):
-		global rapi, rlayers, ecat, eatt
+		global rapi, rlayers, ecat, eatt, user_down, pass_down
+		
 		# Check connection
 		online=rapi.check_connection()
 		if online==True:
@@ -471,6 +486,7 @@ class rasor:
 
 		# Resize table
 		self.dlg_down.tableWidget.resizeColumnsToContents()
+		self.dlg_down.tableWidget.sortItems(0)
 
 		# Show interface
 		self.dlg_down.show()
@@ -501,13 +517,33 @@ class rasor:
 			if zipF == -1 or os.stat(zipF).st_size != 0:
 				shpfile=rapi.unzip_file(progress, zipF, tempDir)
 				if shpfile == -1:
-					self.iface.messageBar().pushMessage("Download layer", "ERROR, the downloaded file is not a valid ZIP", level=QgsMessageBar.CRITICAL, duration=5)
+					# User input
+					user_down=self.get_username(True)
+					if user_down != "":
+						rapi.save_file(self.cache_dir+'/infoU_down', user_down)
+					else:
+						return ## Quit
+					
+					# Password input
+					pass_down=self.get_password(True)
+					if pass_down != "":				
+						rapi.save_file(self.cache_dir+'/infoP_down', pass_down)
+					else:
+						return ## Quit					
+					# Try raster layer
+					file_tmp=rapi.download_raster(self.iface, progress, layerDown, tempDir, user_down, pass_down)
+					if file_tmp == -1: return
+					layer = self.iface.addRasterLayer(file_tmp, layerDown)
 				else:
-					# Translate file
+					# Inverse Translate file
 					file_tmp=rapi.inverse_translate_file(self.iface, progress, tempDir+'/'+shpfile, eatt, tempfile.gettempdir())
+					if file_tmp == -1: return
 					layer = self.iface.addVectorLayer(file_tmp, layerDown, "ogr")
-					# Finish
-					self.iface.messageBar().clearWidgets()
-					self.iface.messageBar().pushMessage("Download layer", "Congratulations, files were downloaded", level=QgsMessageBar.INFO, duration=3)
+				# Finish
+				self.iface.messageBar().clearWidgets()
+				self.iface.messageBar().pushMessage("Download layer", "Congratulations, files were downloaded", level=QgsMessageBar.INFO, duration=3)
+				# Zoom to layer
+				self.iface.zoomToActiveLayer()
 			else:
+				self.iface.messageBar().clearWidgets()
 				self.iface.messageBar().pushMessage("Download layer", "ERROR, trying to connect to RASOR platform", level=QgsMessageBar.CRITICAL, duration=5)
