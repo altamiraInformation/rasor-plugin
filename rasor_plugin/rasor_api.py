@@ -103,33 +103,34 @@ class rasor_api:
 		outDataSource = outDriver.CreateDataSource(outShapefile)
 		outLayer = outDataSource.CreateLayer(str(layerName))
 
-		## Translate dbf table (columns) to rc_<ID> and rd_<ID> for every attribute <ID> 
-		enum=[]
-		for i in range(inLayer_defn.GetFieldCount()):
-			rcid = inLayer_defn.GetFieldDefn(i).GetName()
+		## Translate dbf table (columns) to rc_<ID>/rd_<ID> for every attribute <ID> 
+		idx=[]
+		for fd in range(inLayer_defn.GetFieldCount()):
+			rcid = inLayer_defn.GetFieldDefn(fd).GetName()
 			if "rc" in rcid:				
 				parts=rcid.split('_') # _rc_XX
 				id_name = parts[2]	
 				obj=self.search_object(eatt, 'id', int(id_name))				
 				if not obj:
-					print "ERR: "+id_name+" not found."
+					print "WARNING: "+id_name+" not found"			
 				else:					
-					# Add a new field
-					new_field1 = ogr.FieldDefn(str(obj['name']), ogr.OFTString)
-					outLayer.CreateField(new_field1)					
+					# Add a new valid field					
+					new_field1 = ogr.FieldDefn(str(obj['name']), ogr.OFTString)					
+					outLayer.CreateField(new_field1)
+					idx.append(fd+1)	# index	_rd_XX	
 
 		## Add features to the ouput Layer
 		outLayerDefn = outLayer.GetLayerDefn()
-		for f in range(0, inLayer.GetFeatureCount()):
+		for f in range(inLayer.GetFeatureCount()):			
 			inFeature = inLayer.GetFeature(f)
 			outFeature = ogr.Feature(outLayerDefn)
 			# Add field values from input Layer
-			for i in range(0, outLayerDefn.GetFieldCount()):
-				try:
-					idval = inFeature.GetField((i*2)+1) # _rd_YY
-					if idval != None: 	outFeature.SetField(outLayerDefn.GetFieldDefn(i).GetNameRef(), str(idval))
-				except ValueError:
-					continue
+			z=0
+			for i in idx:
+				idval = inFeature.GetField(i) # _rd_YY
+				if idval != None: 	outFeature.SetField(outLayerDefn.GetFieldDefn(z).GetNameRef(), str(idval)) # avoid NULL situation
+				z+=1
+
 			# Add geometry
 			geom = inFeature.GetGeometryRef()		
 			outFeature.SetGeometry(geom)

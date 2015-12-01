@@ -477,6 +477,7 @@ class rasor:
 		self.dlg_down.tableWidget.setHorizontalHeaderItem(0, QTableWidgetItem("RASOR layer name"))
 		self.dlg_down.tableWidget.setHorizontalHeaderItem(1, QTableWidgetItem("Category"))
 		self.dlg_down.tableWidget.setRowCount(len(rlayers['objects']))
+		self.dlg_down.tableWidget.setEditTriggers(QAbstractItemView.NoEditTriggers)
 		lrow=0
 
 		for rlay in rlayers['objects']:
