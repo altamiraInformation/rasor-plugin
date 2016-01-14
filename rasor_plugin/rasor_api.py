@@ -7,7 +7,7 @@ class rasor_api:
 	#### Internet available (2 seconds timeout)
 	def check_connection(self):
 		try:
-			response=urllib2.urlopen(self.rasor_api, timeout=2)
+			response=urllib2.urlopen(self.rasor_api, timeout=3)
 			return True
 		except: pass
 		return False
@@ -19,7 +19,7 @@ class rasor_api:
 			socket.setdefaulttimeout(10)
 			url=self.rasor_api+'/geoserver/wfs?format_options=charset%3AUTF-8&typename=geonode%3A'+layerName+'&outputFormat=SHAPE-ZIP&version=1.0.0&service=WFS&request=GetFeature'
 			print url
-			response = urllib.urlopen(url)
+			response = urllib2.urlopen(url, timeout=180)
 			fname=tempDir+'/'+layerName+'.zip'
 			print fname
 			with open(fname, 'wb') as f:
@@ -114,7 +114,8 @@ class rasor_api:
 				if not obj:
 					print "WARNING: "+id_name+" not found"			
 				else:					
-					# Add a new valid field					
+					# Add a new valid field	
+					print "OK: Found VAL=%s with ID=%s" % (obj['name'], obj['id'])				
 					new_field1 = ogr.FieldDefn(str(obj['name']), ogr.OFTString)					
 					outLayer.CreateField(new_field1)
 					idx.append(fd+1)	# index	_rd_XX	
@@ -182,7 +183,7 @@ class rasor_api:
 				if len(arr):	enum.append(1)
 				else:			enum.append(0)
 			else:
-				print "ERR: "+field_name+" not found."
+				print "WARNING: "+field_name+" not found."
 				
 		## Add features to the ouput Layer
 		outLayerDefn = outLayer.GetLayerDefn()
@@ -215,7 +216,8 @@ class rasor_api:
 	#### Upload a file
 	def upload_file(self, iface, progress, fileName, dirNameTmp, exposureCatId, user, password):
 		progress.setValue(5)
-		
+		print 'LOGIN IN ...'
+
 		## Layer name
 		layerName = os.path.splitext(os.path.basename(fileName))[0]
 		dirName = os.path.dirname(fileName)
@@ -230,7 +232,8 @@ class rasor_api:
 		#print loginResponse.reason, loginResponse.text
 		if loginResponse.status_code == 200:
 			## Upload
-			url_upload = self.rasor_api+'/rasorapi/exposure/uploadandimport/'+layerName+'/'+str(exposureCatId)+'/'			
+			url_upload = self.rasor_api+'/rasorapi/exposure/uploadandimport/'+layerName+'/'+str(exposureCatId)+'/'
+			print 'UPLOADING ...'	
 			progress.setValue(8)
 			uploadResponse = requests.post(
 				url_upload,

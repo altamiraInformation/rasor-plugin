@@ -23,6 +23,7 @@
 # PyQT4 imports
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
+import PyQt4.QtCore as QtCore
 
 # QGIS imports
 from qgis.core import *
@@ -108,12 +109,15 @@ class rasor:
 		rapi.set_server(server)
 		first=0
 
-		# Saved impacts/hazards/exposures/attributes/values
+		# Saved impacts/hazards/exposures/attributes/values (optional, cache)
 		imp=rapi.download_json(self.cache_dir+'/impact_types.json','/rasorapi/db/impact/types', False)
 		haz=rapi.download_json(self.cache_dir+'/hazard_types.json','/rasorapi/db/hazard/hazards', False)
 		ecat=rapi.download_json(self.cache_dir+'/exposure_categories.json','/rasorapi/db/exposure/categories', False)
 		eatt=rapi.download_json(self.cache_dir+'/exposure_attributes.json','/rasorapi/db/exposure/attributes', False)
 		evaluation=rapi.download_json(self.cache_dir+'/exposure_values.json','/rasorapi/db/exposure/valuesdecode', False)
+
+		# Layers (mandatory download)
+		rlayers=rapi.download_json(self.cache_dir+'/rasor_layers.json','/api/layers', True)
 				
 		# Saved hazard evaluations
 		haz_cat={}
@@ -457,21 +461,9 @@ class rasor:
 		if pwdD.exec_():
 			return pwdD.textValue()
 		return ""
-		
-    def run_download(self):
-		global rapi, rlayers, ecat, eatt, user_down, pass_down
-		
-		# Check connection
-		online=rapi.check_connection()
-		if online==True:
-			print 'ONLINE: Downloading layers from RASOR platform'
-			rlayers=rapi.download_json(self.cache_dir+'/rasor_layers.json','/api/layers', True)
-			ecat=rapi.download_json(self.cache_dir+'/exposure_categories.json','/rasorapi/db/exposure/categories', False)
-			eatt=rapi.download_json(self.cache_dir+'/exposure_attributes.json','/rasorapi/db/exposure/attributes', False)
-		else:
-			self.iface.messageBar().pushMessage("Download layer", "Unable to connect to RASOR platform, you have to be online to download a layer", level=QgsMessageBar.CRITICAL, duration=5)
-			return
-
+	
+    def load_table_layers(self):
+		global rlayers
 		# Load RASOR layers to table
 		self.dlg_down.tableWidget.clear()
 		self.dlg_down.tableWidget.setHorizontalHeaderItem(0, QTableWidgetItem("RASOR layer name"))
@@ -488,6 +480,30 @@ class rasor:
 		# Resize table
 		self.dlg_down.tableWidget.resizeColumnsToContents()
 		self.dlg_down.tableWidget.sortItems(0)
+		self.dlg_down.infoEdit.setText(str(lrow)+' layers found on the RASOR platform')
+
+    def refresh_layers(self):
+		global rapi, rlayers, ecat, eatt
+		# Refresh layers
+		rlayers=rapi.download_json(self.cache_dir+'/rasor_layers.json','/api/layers', True)
+		ecat=rapi.download_json(self.cache_dir+'/exposure_categories.json','/rasorapi/db/exposure/categories', False)
+		eatt=rapi.download_json(self.cache_dir+'/exposure_attributes.json','/rasorapi/db/exposure/attributes', False)
+		self.load_table_layers()    	
+		
+    def run_download(self):
+		global rapi, rlayers, ecat, eatt, user_down, pass_down
+		
+		# Check connection
+		online=rapi.check_connection()
+		if online==True:
+			print 'ONLINE: Downloading layers from RASOR platform'
+			self.load_table_layers()
+		else:
+			self.iface.messageBar().pushMessage("Download layer", "Unable to connect to RASOR platform, you have to be online to download a layer", level=QgsMessageBar.CRITICAL, duration=5)
+			return
+
+		# Connect refresh
+		self.dlg_down.connect(self.dlg_down.refreshButton, SIGNAL("clicked()"), self.refresh_layers)
 
 		# Show interface
 		self.dlg_down.show()
@@ -501,6 +517,8 @@ class rasor:
 			# Get selected layer
 			selrow = itemS.row()
 			layerDown = self.dlg_down.tableWidget.item(selrow,0).text()
+			obj = rapi.search_object(rlayers, 'title', layerDown)
+			geoserverName=obj['detail_url'].split('%3A')[1]
 			self.dlg_down.destroy()
 
 			## Setup progressBar	
@@ -513,11 +531,14 @@ class rasor:
 			self.iface.messageBar().pushWidget(progressMessageBar, self.iface.messageBar().INFO)			
 
 			# Download
-			tempDir=tempfile.gettempdir()
-			zipF=rapi.download_file_WFS(progress, layerDown, tempDir)
+			tempDir=tempfile.mkdtemp()
+			print 'INFO: Downloading '+geoserverName+' by [WFS]'
+			zipF=rapi.download_file_WFS(progress, geoserverName, tempDir)
 			if zipF == -1 or os.stat(zipF).st_size != 0:
+				print 'INFO: Unzip '+zipF
 				shpfile=rapi.unzip_file(progress, zipF, tempDir)
 				if shpfile == -1:
+					print 'INFO: Trying raster file download ...'
 					# User input
 					user_down=self.get_username(True)
 					if user_down != "":
@@ -532,14 +553,14 @@ class rasor:
 					else:
 						return ## Quit					
 					# Try raster layer
-					file_tmp=rapi.download_raster(self.iface, progress, layerDown, tempDir, user_down, pass_down)
+					file_tmp=rapi.download_raster(self.iface, progress, geoserverName, tempDir, user_down, pass_down)
 					if file_tmp == -1: return
-					layer = self.iface.addRasterLayer(file_tmp, layerDown)
+					layer = self.iface.addRasterLayer(file_tmp, geoserverName)
 				else:
 					# Inverse Translate file
-					file_tmp=rapi.inverse_translate_file(self.iface, progress, tempDir+'/'+shpfile, eatt, tempfile.gettempdir())
+					file_tmp=rapi.inverse_translate_file(self.iface, progress, tempDir+'/'+shpfile, eatt, tempfile.mkdtemp())
 					if file_tmp == -1: return
-					layer = self.iface.addVectorLayer(file_tmp, layerDown, "ogr")
+					layer = self.iface.addVectorLayer(file_tmp, geoserverName, "ogr")
 				# Finish
 				self.iface.messageBar().clearWidgets()
 				self.iface.messageBar().pushMessage("Download layer", "Congratulations, files were downloaded", level=QgsMessageBar.INFO, duration=3)
