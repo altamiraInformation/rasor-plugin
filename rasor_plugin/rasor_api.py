@@ -3,6 +3,10 @@ from qgis.gui import QgsMessageBar
 from osgeo import gdal
 from urllib2 import HTTPError
 
+#########################################################################################
+### Description: Main class to interact with the RASOR REST api
+#########################################################################################
+
 class rasor_api:
 	#### Internet available (2 seconds timeout)
 	def check_connection(self):

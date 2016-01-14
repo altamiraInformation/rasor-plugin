@@ -28,6 +28,9 @@ from PyQt4 import QtGui, uic
 FORM_CLASS, _ = uic.loadUiType(os.path.join(
     os.path.dirname(__file__), 'rasor_plugin_dialog_base.ui'))
 
+#########################################################################################
+### Description: Launches the QT interface dialog
+#########################################################################################
 
 class rasorDialog(QtGui.QDialog, FORM_CLASS):
     def __init__(self, parent=None):

@@ -57,6 +57,10 @@ rlayers=""
 first=1
 rapi = rasor_api()
 
+#########################################################################################
+### Description: Main class to interact with the QT interface
+#########################################################################################
+
 class rasor:
     """QGIS Plugin Implementation."""
 
