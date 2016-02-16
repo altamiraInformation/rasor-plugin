@@ -20,6 +20,7 @@
  *                                                                         *
  ***************************************************************************/
 """
+
 # PyQT4 imports
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
@@ -32,6 +33,8 @@ from qgis.gui import QgsMessageBar
 
 # Custom imports RASOR
 from rasor_api import rasor_api
+from rasor_set import rasor_settings
+#from rasor_cache import rasor_cache
 
 # Initialize Qt resources from file resources.py
 import resources_rc
@@ -43,23 +46,17 @@ import os.path, json, tempfile, sys
 from os.path import expanduser
 
 # Global variables
-user=""
-pwd=""
-user_down=""
-pass_down=""
 haz=""
 ecat=""
 eatt=""
 imp=""
 evaluation=""
+indicators=""
 haz_cat=""
 rlayers=""
 first=1
 rapi = rasor_api()
-
-#########################################################################################
-### Description: Main class to interact with the QT interface
-#########################################################################################
+rset = rasor_settings()
 
 class rasor:
     """QGIS Plugin Implementation."""
@@ -72,7 +69,7 @@ class rasor:
             application at run time.
         :type iface: QgsInterface
         """
-	global haz, ecat, imp, eatt, evaluation, rapi, first, user, pwd, haz_cat, rlayers
+	global haz, ecat, imp, eatt, evaluation, indicators, rapi, first, haz_cat, rlayers
 	
         # Save reference to the QGIS interface
         self.iface = iface
@@ -102,31 +99,32 @@ class rasor:
 	self.toolbar = self.iface.addToolBar(u'rasor')
 	self.toolbar.setObjectName(u'rasor')
 
-	# Get RASOR info
+	# Get RASOR info on QGIS startup (load plugin)
 	if first:
-		# Saved user preferences
-		user=rapi.load_file(self.cache_dir+'/infoU')
-		pwd=rapi.load_file(self.cache_dir+'/infoP')
-		user_down=rapi.load_file(self.cache_dir+'/infoU_down')
-		pass_down=rapi.load_file(self.cache_dir+'/infoP_down')		
+		# Saved user preferences (server)
 		server=rapi.load_file(self.cache_dir+'/server')
 		rapi.set_server(server)
 		first=0
 
-		# Saved impacts/hazards/exposures/attributes/values (optional, cache)
-		imp=rapi.download_json(self.cache_dir+'/impact_types.json','/rasorapi/db/impact/types', False)
-		haz=rapi.download_json(self.cache_dir+'/hazard_types.json','/rasorapi/db/hazard/hazards', False)
-		ecat=rapi.download_json(self.cache_dir+'/exposure_categories.json','/rasorapi/db/exposure/categories', False)
-		eatt=rapi.download_json(self.cache_dir+'/exposure_attributes.json','/rasorapi/db/exposure/attributes', False)
-		evaluation=rapi.download_json(self.cache_dir+'/exposure_values.json','/rasorapi/db/exposure/valuesdecode', False)
+		# Saved impacts/hazards/exposures/attributes/values (optional, cache, only download if internet access)
+		online=rapi.check_connection()
+		if online==True:
+			print 'ONLINE: Downloading metadata from RASOR platform'
+		else:
+			print 'OFFLINE: You will not be able to upload/download layers to the platform'
 
-		# Layers (mandatory download)
-		rlayers=rapi.download_json(self.cache_dir+'/rasor_layers.json','/api/layers', True)
-				
+		imp=rapi.download_json(self.cache_dir+'/impact_types.json','/rasorapi/db/impact/types', online)
+		haz=rapi.download_json(self.cache_dir+'/hazard_types.json','/rasorapi/db/hazard/hazards', online)
+		ecat=rapi.download_json(self.cache_dir+'/exposure_categories.json','/rasorapi/db/exposure/categories', online)
+		eatt=rapi.download_json(self.cache_dir+'/exposure_attributes.json','/rasorapi/db/exposure/attributes', online)
+		evaluation=rapi.download_json(self.cache_dir+'/exposure_values.json','/rasorapi/db/exposure/valuesdecode', online)
+		indicators=rapi.download_json(self.cache_dir+'/indicators.json','/rasorapi/db/impact/indicators', online)		
+		rlayers=rapi.download_json(self.cache_dir+'/rasor_layers.json','/api/layers', online)
+		
 		# Saved hazard evaluations
 		haz_cat={}
 		for elem in ecat['objects']:
-			haz_cat[str(elem['id'])]=rapi.download_json(self.cache_dir+'/haz_cat'+str(elem['id'])+'.json','/rasorapi/db/hazard/hazardsattributes/?category='+str(elem['id']), False)
+			haz_cat[str(elem['id'])]=rapi.download_json(self.cache_dir+'/haz_cat'+str(elem['id'])+'.json','/rasorapi/db/hazard/hazardsattributes/?category='+str(elem['id']), online)
 	
     # noinspection PyMethodMayBeStatic
     def tr(self, message):
@@ -260,7 +258,7 @@ class rasor:
 	for elem in ecat['objects']:
 		self.dlg.exposureBox.addItem(str(elem["name"]))
 		c+=1
-		
+
 	# Hazards list (multiple selection)
 	h=0
 	self.dlg.hazardBox.clear()
@@ -293,7 +291,8 @@ class rasor:
 		selExp=str(self.dlg.exposureBox.currentText())	
 		idExp=rapi.search_id(ecat, 'name', selExp)
 		evalu=haz_cat[str(idExp)]
-		if selExp == 'lifelines' or 'network' in selExp: 
+
+		if selExp == 'lifelines' or 'network' in selExp:  # Type of geometry
 			geom='Line'
 		else:
 			geom='Poly'		
@@ -327,7 +326,7 @@ class rasor:
 		ly.startEditing()
 
 		# Get exposure attributes (selected)		
-		valid_atts=rapi.search_category(eatt, int(idExp))
+		valid_atts=rapi.search_array(eatt, int(idExp), 'category')
 		
 		labels=[]
 		ids=[]
@@ -353,7 +352,7 @@ class rasor:
 		ind=0
 		for id in ids:
 			# Search for possible atts
-			arr=rapi.search_attributes(evaluation, int(id))
+			arr=rapi.search_array(evaluation, int(id), 'attribute')
 			vals=dict()
 			for att in arr:
 				name=str(att['name'])
@@ -370,7 +369,7 @@ class rasor:
 		QgsMapLayerRegistry.instance().addMapLayer(ly)
 			
     def run_upload(self):
-		global rapi, ecat, eatt, user, pwd
+		global rapi, rset, ecat, eatt
 		"""Upload a RASOR exposure layer"""	
 		# Check connection
 		online=rapi.check_connection()
@@ -404,17 +403,16 @@ class rasor:
 				idcatexp=rapi.search_id(ecat, 'name', dlgE.textValue())
 				# User input
 				user=self.get_username(False)
-				if user != "":
-					rapi.save_file(self.cache_dir+'/infoU', user)
-				else:
+				if user == "":
 					return ## Quit
-				
+				else:
+					rset.set_user_up(user)		
 				# Password input
 				pwd=self.get_password(False)
-				if pwd != "":				
-					rapi.save_file(self.cache_dir+'/infoP', pwd)
-				else:
+				if pwd == "":				
 					return ## Quit
+				else:
+					rset.set_pass_up(pwd)				
 					
 				# Translate & Upload				
 				for f in dlgU.selectedFiles():					
@@ -435,32 +433,32 @@ class rasor:
 						self.iface.messageBar().pushMessage("Upload layer", "Congratulations, files were uploaded", level=QgsMessageBar.INFO, duration=3)
 
     def get_username(self, down):
-		global user, user_down
+		global rset
 		userD=QInputDialog()		
 		if down == True:
 			userD.setLabelText('Username (download):')	
 			userD.setWindowTitle('RASOR [DOWN]:')
-			userD.setTextValue(user_down)
+			userD.setTextValue(rset.get_user_down())
 		else:
 			userD.setLabelText('Username (upload):')		
 			userD.setWindowTitle('RASOR [UP]:')
-			userD.setTextValue(user)			
+			userD.setTextValue(rset.get_user_up())			
 		userD.setTextEchoMode(QLineEdit.Normal)
 		if userD.exec_():
 			return userD.textValue()
 		return ""
 	
     def get_password(self, down):
-		global pwd, pass_down
+		global rset
 		pwdD=QInputDialog()				
 		if down == True:	
 			pwdD.setLabelText('Password (download):')
 			pwdD.setWindowTitle('RASOR [DOWN]:')
-			pwdD.setTextValue(pass_down)
+			pwdD.setTextValue(rset.get_pass_down())
 		else:			
 			pwdD.setLabelText('Password (upload):')
 			pwdD.setWindowTitle('RASOR [UP]:')
-			pwdD.setTextValue(pwd)			
+			pwdD.setTextValue(rset.get_pass_up())			
 		pwdD.setTextEchoMode(QLineEdit.Password)
 		if pwdD.exec_():
 			return pwdD.textValue()
@@ -495,7 +493,7 @@ class rasor:
 		self.load_table_layers()    	
 		
     def run_download(self):
-		global rapi, rlayers, ecat, eatt, user_down, pass_down
+		global rapi, rset, rlayers, ecat, eatt, indicators, evaluation
 		
 		# Check connection
 		online=rapi.check_connection()
@@ -521,8 +519,8 @@ class rasor:
 			# Get selected layer
 			selrow = itemS.row()
 			layerDown = self.dlg_down.tableWidget.item(selrow,0).text()
-			obj = rapi.search_object(rlayers, 'title', layerDown)
-			geoserverName=obj['detail_url'].split('%3A')[1]
+			layerObj = rapi.search_object(rlayers, 'title', layerDown)
+			geoserverName=layerObj['detail_url'].split('%3A')[1]
 			self.dlg_down.destroy()
 
 			## Setup progressBar	
@@ -541,28 +539,32 @@ class rasor:
 			if zipF == -1 or os.stat(zipF).st_size != 0:
 				print 'INFO: Unzip '+zipF
 				shpfile=rapi.unzip_file(progress, zipF, tempDir)
+				# Case 1: GeoTiff with authentication
 				if shpfile == -1:
 					print 'INFO: Trying raster file download ...'
 					# User input
-					user_down=self.get_username(True)
-					if user_down != "":
-						rapi.save_file(self.cache_dir+'/infoU_down', user_down)
-					else:
+					user_down=self.get_username(True)					
+					if user_down == "":
 						return ## Quit
-					
+					else:
+						rset.set_user_down(user_down)
 					# Password input
 					pass_down=self.get_password(True)
-					if pass_down != "":				
-						rapi.save_file(self.cache_dir+'/infoP_down', pass_down)
+					if pass_down == "":				
+						return ## Quit	
 					else:
-						return ## Quit					
+						rset.set_pass_down(pass_down)
 					# Try raster layer
 					file_tmp=rapi.download_raster(self.iface, progress, geoserverName, tempDir, user_down, pass_down)
 					if file_tmp == -1: return
 					layer = self.iface.addRasterLayer(file_tmp, geoserverName)
+				# Case 2: SHP without authentication
 				else:
-					# Inverse Translate file
-					file_tmp=rapi.inverse_translate_file(self.iface, progress, tempDir+'/'+shpfile, eatt, tempfile.mkdtemp())
+					# Get layer metadata [type]
+					layerData=rapi.layer_info(layerObj['id'])
+					# Inverse Translate file by type [exposure/impact]		
+					file_tmp=rapi.inverse_translate_file(self.iface, progress, tempDir+'/'+shpfile, eatt, evaluation, tempfile.mkdtemp(), layerData['type'], indicators)
+					# Add layer to QGIS active layers
 					if file_tmp == -1: return
 					layer = self.iface.addVectorLayer(file_tmp, geoserverName, "ogr")
 				# Finish

@@ -1,14 +1,35 @@
-import urllib, urllib2, httplib2, json, os, requests, ogr, socket, sys, zipfile, base64
+# -*- coding: utf-8 -*-
+"""
+/***************************************************************************
+ rasor
+                                 A QGIS plugin
+ Plugin in order to generate Rasor compliant data and upload it to the platform
+                              -------------------
+        begin                : 2015-03-11
+        git sha              : $Format:%H$
+        copyright            : (C) 2015 by Joan Sala
+        email                : joan.sala@altamira-information.com
+ ***************************************************************************/
+
+/***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
+"""
+
+import urllib, urllib2, httplib2, json, os, socket, sys, base64, zipfile, re
+import requests  # downloaded packages
 from qgis.gui import QgsMessageBar
 from osgeo import gdal
+from osgeo import ogr
 from urllib2 import HTTPError
 
-#########################################################################################
-### Description: Main class to interact with the RASOR REST api
-#########################################################################################
-
 class rasor_api:
-	#### Internet available (2 seconds timeout)
+	#### Internet available (3 seconds timeout)
 	def check_connection(self):
 		try:
 			response=urllib2.urlopen(self.rasor_api, timeout=3)
@@ -21,14 +42,13 @@ class rasor_api:
 		try:
 			progress.setValue(4)
 			socket.setdefaulttimeout(10)
-			url=self.rasor_api+'/geoserver/wfs?format_options=charset%3AUTF-8&typename=geonode%3A'+layerName+'&outputFormat=SHAPE-ZIP&version=1.0.0&service=WFS&request=GetFeature'
+			url=self.rasor_api+'/geoserver/wfs?typename=geonode%3A'+layerName+'&outputFormat=SHAPE-ZIP&version=1.0.0&service=WFS&request=GetFeature'
 			print url
-			response = urllib2.urlopen(url, timeout=180)
+			req = urllib2.urlopen(url, timeout=180)
 			fname=tempDir+'/'+layerName+'.zip'
-			print fname
 			with open(fname, 'wb') as f:
 			   while True:
-			      chunk = response.read(1024)
+			      chunk = req.read(1024)	      
 			      if not chunk: break
 			      f.write(chunk)
 			f.close()
@@ -73,24 +93,24 @@ class rasor_api:
 	#### Unzip file
 	def unzip_file(self, progress, zipName, tempDir):
 		try:
-			progress.setValue(7)
-			fh = open(zipName, 'rb')
-			z = zipfile.ZipFile(fh)
-			flist = z.namelist()
+			progress.setValue(7)			
 			res = -1
 			## Unzip contents
-			for name in flist:
-				if name.endswith('.shp'): res=name
-				z.extract(name, tempDir)
-			## Close and send file list
-			fh.close()
+			zfile = zipfile.ZipFile(zipName)
+			for name in zfile.namelist():
+				(dirname, filename) = os.path.split(name)
+				if not os.path.exists(tempDir):
+					os.makedirs(tempDir)
+				zfile.extract(name, tempDir)	
+				## Return the shp file
+				if name.endswith('.shp'): res=name				
 			return res
 		except:
 			progress.setValue(0)
-			return -1 ## Bad zip file
+			return -1
 
-	#### Inverse Translate a file
-	def inverse_translate_file(self, iface, progress, fileName, eatt, tmpdir):		
+	#### Inverse Translate an exposure file
+	def inverse_translate_file(self, iface, progress, fileName, eatt, evaluation, tmpdir, layerType, indicators):		
 		progress.setValue(9)
 		## Read the input layer
 		layerName = os.path.splitext(os.path.basename(fileName))[0]
@@ -109,20 +129,48 @@ class rasor_api:
 
 		## Translate dbf table (columns) to rc_<ID>/rd_<ID> for every attribute <ID> 
 		idx=[]
+		ind={}
+		vals={}
 		for fd in range(inLayer_defn.GetFieldCount()):
-			rcid = inLayer_defn.GetFieldDefn(fd).GetName()
-			if "rc" in rcid:				
-				parts=rcid.split('_') # _rc_XX
+			instr = inLayer_defn.GetFieldDefn(fd).GetName()
+			## RC_XX (_rc_XX)
+			if "rc" in instr:				
+				parts=instr.split('_')
 				id_name = parts[2]	
-				obj=self.search_object(eatt, 'id', int(id_name))				
+				obj=self.search_object(eatt, 'id', int(id_name)) # str to int			
 				if not obj:
-					print "WARNING: "+id_name+" not found"			
+					print "WARNING: FIELD"+id_name+" not found"			
 				else:					
 					# Add a new valid field	
-					print "OK: Found VAL=%s with ID=%s" % (obj['name'], obj['id'])				
+					print "OK: Found FIELD=%s with ID=%s" % (obj['name'], obj['id'])				
 					new_field1 = ogr.FieldDefn(str(obj['name']), ogr.OFTString)					
 					outLayer.CreateField(new_field1)
-					idx.append(fd+1)	# index	_rd_XX	
+					# Cache-Search for possible values for a given id
+					arrval=self.search_array(evaluation, int(id_name), 'attribute') # search all possible attribute values
+					vals[str(id_name)] = arrval
+					# Exposure/Impact layer
+					if layerType == 'exposure': 	
+						idx.append(fd+1)	# index	_rd_XX	
+						ind[fd+1] = id_name # save index
+					else:							
+						idx.append(fd)		# index _rc_XX [no rd values on impact layer]
+						ind[fd] = id_name   # save index
+			
+			## INDICATORS (indicatorXX)
+			elif "indicat" in instr:
+				parts=re.findall(r'\d+', instr) # get integer
+				if len(parts):
+					id_name = parts[0]
+					obj=self.search_object(indicators, 'id', int(id_name))
+					if not obj:
+						print "WARNING: "+id_name+" not found"
+					else:					
+						# Add a new valid field	
+						print "OK: Found IND=%s with ID=%s" % (obj['name'], obj['id'])				
+						new_field1 = ogr.FieldDefn(str(obj['name']), ogr.OFTString)					
+						outLayer.CreateField(new_field1)
+						idx.append(fd)	# index indicator_XX							
+						ind[fd] = id_name # Save index					
 
 		## Add features to the ouput Layer
 		outLayerDefn = outLayer.GetLayerDefn()
@@ -132,13 +180,22 @@ class rasor_api:
 			# Add field values from input Layer
 			z=0
 			for i in idx:
-				idval = inFeature.GetField(i) # _rd_YY
-				if idval != None: 	outFeature.SetField(outLayerDefn.GetFieldDefn(z).GetNameRef(), str(idval)) # avoid NULL situation
+				# RC or RD depending on layer type
+				idval = inFeature.GetField(i)
+				idcol = ind[i]
+				if idval != None:					
+					trueval = idval # default case is _rd_YY										
+					if str(idcol) in vals:
+						obj=self.search_inside_array(vals[str(idcol)], idval, 'id')
+						if obj: trueval=obj['name']
+					# avoid NULL situation
+					outFeature.SetField(outLayerDefn.GetFieldDefn(z).GetNameRef(), str(trueval)) 
 				z+=1
 
 			# Add geometry
 			geom = inFeature.GetGeometryRef()		
 			outFeature.SetGeometry(geom)
+			
 			# Add new feature to output Layer
 			outLayer.CreateFeature(outFeature)
 
@@ -148,7 +205,7 @@ class rasor_api:
 		
 		return outShapefile
 
-	#### Translate a file
+	#### Translate a created file
 	def translate_file(self, iface, progress, fileName, idcatexp, eatt, eval, tmpdir):		
 		progress.setValue(2)
 		## Read the input layer
@@ -183,7 +240,7 @@ class rasor_api:
 				outLayer.CreateField(new_field1)
 				outLayer.CreateField(new_field2)
 				# Detect enumerate
-				arr=self.search_attributes(eval, int(obj['id']))
+				arr=self.search_array(eval, int(obj['id']), 'attribute')
 				if len(arr):	enum.append(1)
 				else:			enum.append(0)
 			else:
@@ -282,7 +339,7 @@ class rasor_api:
 		obj = json.loads(content)
 		return obj	
 	
-	#### Download main function
+	#### Download main function () - Write to disk cache
 	def download_json(self, filename, path, force):
 		if (os.path.isfile(filename)) and (os.stat(filename).st_size > 0) and (force == False):
 			## Query file cache
@@ -291,12 +348,18 @@ class rasor_api:
 			## Query server (return file if timeout)
 			obj = self.query_api(self.rasor_api, path)
 			if obj == -1:
-				return self.query_file(filename)
+				return self.query_file(filename) # offline mode
 			else:
 				with open(filename, 'w') as output_file:
 					json.dump(obj, output_file)
 				return obj
-		
+	
+	#### Get layer information (do not write on disk)
+	def layer_info(self, layerID):
+		path = '/rasorapi/layers/'+str(layerID)
+		obj = self.query_api(self.rasor_api, path)
+		return obj
+
 	#### Search one-object in JSON by NAME
 	def search_id(self, json, tag, value):
 		for elem in json['objects']:
@@ -318,41 +381,38 @@ class rasor_api:
 				return elem
 		return ''
 		
-	#### Search multi-object in JSON by ID
-	def search_category(self, json, id):
+	#### Search multi-object in JSON by ID=[category/attribute]
+	def search_array(self, json, id, tag):
 		arr=[]
 		for elem in json['objects']:
-			if elem['category']==id:
-				arr.append(elem)
-		return arr
-	
-	#### Search multi-object in JSON by ID
-	def search_attributes(self, json, id):
-		arr=[]
-		for elem in json['objects']:
-			if elem['attribute']==id:
+			if elem[tag]==id:
 				arr.append(elem)
 		return arr
 		
-	#### Load/Save username/password from file
+	#### Search in array of dictionaries
+	def search_inside_array(self, arr, value, field):
+		for elem in arr:
+			if str(elem[field])==str(value):
+				return elem				
+		return ''
+
+	#### Load/Save server from file
 	def load_file(self, filename):
 		if os.path.exists(filename):
 			myfile = open(filename, "r") 
 			return myfile.read().replace('\n', '')
 		else:
 			return ""
-
 	def save_file(self, filename, text):
 		myfile = open(filename, "w") 
 		myfile.write(str(text))
 		myfile.close()
-
 	def set_server(self, server):
 		self.rasor_api = server	
 
 	#### MAIN
 	def __init__(self):
 		# Global variable (RASOR-API-SERVER)
-		# test-env: self.rasor_api = 'http://130.251.104.35/rasorapi'
+		# test-env: self.rasor_api = 'http://130.251.104.35/'
 		# prod-env: self.rasor_api = 'http://130.251.104.198/'
 		ok = 0
