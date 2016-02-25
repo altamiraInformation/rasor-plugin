@@ -258,8 +258,11 @@ class rasor_api:
 				else:				# RD
 					val = inFeature.GetField((i-1)/2)
 					if enum[(i-1)/2] and val != None:
-						obj=self.search_object(eval, 'id', int(inFeature.GetField((i-1)/2)))
-						if obj != '': 	val = obj['name']			
+						# If value is int search for ID translation
+						if val.isdigit():
+							obj=self.search_object(eval, 'id', int(inFeature.GetField((i-1)/2)))
+							if obj != '': 	val = obj['name']
+						
 				# Add value to dbf column
 				if val != None: outFeature.SetField(outLayerDefn.GetFieldDefn(i).GetNameRef(), str(val))
 			# Add geometry
