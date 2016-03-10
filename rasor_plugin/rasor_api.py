@@ -109,7 +109,7 @@ class rasor_api:
 			progress.setValue(0)
 			return -1
 
-	#### Inverse Translate an exposure file
+	#### Inverse Translate -> FOR DOWNLOAD
 	def inverse_translate_file(self, iface, progress, fileName, eatt, evaluation, tmpdir, layerType, indicators):		
 		progress.setValue(9)
 		## Read the input layer
@@ -130,7 +130,10 @@ class rasor_api:
 		## Translate dbf table (columns) to rc_<ID>/rd_<ID> for every attribute <ID> 
 		idx=[]
 		ind={}
+		
+		## Gather shapefile structure table and possible values
 		vals={}
+
 		for fd in range(inLayer_defn.GetFieldCount()):
 			instr = inLayer_defn.GetFieldDefn(fd).GetName()
 			## RC_XX (_rc_XX)
@@ -203,9 +206,9 @@ class rasor_api:
 		inDataSource.Destroy()
 		outDataSource.Destroy()
 		
-		return outShapefile
+		return {'shp':outShapefile, 'values':vals }
 
-	#### Translate a created file
+	#### Translate a created file -> FOR UPLOAD
 	def translate_file(self, iface, progress, fileName, idcatexp, eatt, eval, tmpdir):		
 		progress.setValue(2)
 		## Read the input layer

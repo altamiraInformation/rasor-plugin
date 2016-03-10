@@ -295,7 +295,7 @@ class rasor:
 		if selExp == 'lifelines' or 'network' in selExp:  # Type of geometry
 			geom='Line'
 		else:
-			geom='Poly'		
+			geom='Poly'
 		
 		# Impact multiple selection (filter)
 		selImp=self.dlg.impactBox.selectedItems()
@@ -558,15 +558,37 @@ class rasor:
 					file_tmp=rapi.download_raster(self.iface, progress, geoserverName, tempDir, user_down, pass_down)
 					if file_tmp == -1: return
 					layer = self.iface.addRasterLayer(file_tmp, geoserverName)
+				
 				# Case 2: SHP without authentication
 				else:
 					# Get layer metadata [type]
 					layerData=rapi.layer_info(layerObj['id'])
+					
 					# Inverse Translate file by type [exposure/impact]		
-					file_tmp=rapi.inverse_translate_file(self.iface, progress, tempDir+'/'+shpfile, eatt, evaluation, tempfile.mkdtemp(), layerData['type'], indicators)
+					ret=rapi.inverse_translate_file(self.iface, progress, tempDir+'/'+shpfile, eatt, evaluation, tempfile.mkdtemp(), layerData['type'], indicators)
+					file_tmp=ret['shp']
+					vals=ret['values']
+					if file_tmp == -1: return ## break
+
 					# Add layer to QGIS active layers
-					if file_tmp == -1: return
 					layer = self.iface.addVectorLayer(file_tmp, geoserverName, "ogr")
+					field_names = [field.name() for field in layer.pendingFields() ]
+					ind=0
+					for nm in field_names:
+						idn = rapi.search_id(eatt, 'name', nm)
+						try:
+							values = vals[str(idn)]
+						except:
+							values = None
+						# Add edit form if values are possible (enumeration)
+						if values:
+							dictio=dict()
+							for v in values:
+								dictio[v['name']]=v['id']
+							layer.setEditorWidgetV2(ind,'ValueMap')
+							layer.setEditorWidgetV2Config(ind, dictio)
+						ind+=1
+
 				# Finish
 				self.iface.messageBar().clearWidgets()
 				self.iface.messageBar().pushMessage("Download layer", "Congratulations, files were downloaded", level=QgsMessageBar.INFO, duration=3)
